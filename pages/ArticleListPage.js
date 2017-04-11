@@ -40,9 +40,8 @@ export default class ArticleListPage extends Component {
         <Content>
           {
             this.state.posts.map((post) => {
-              console.error(post);
               return (
-                <Card key={post.id} style={{ flex: 0 }}>
+                <Card key={post.id} style={{ flex: 0 }} button onPress={() => this.props.navigation.navigate('ArticleDetailPage', { post })}>
                   <CardItem>
                     <Left>
                       <Body>
@@ -54,7 +53,14 @@ export default class ArticleListPage extends Component {
                     <Thumbnail style={{ resizeMode: 'cover' }} square source={{ uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url }} />
                   </CardItem>
                   <CardItem content>
-                    <Text>{post.my_excerpt}</Text>
+                    <Text>
+                      {
+                        post.my_excerpt
+                            .replace(/&nbsp;/g, '')
+                            .substr(0, 100)
+                      }......
+                      {/*<Button buttonText="Read More" />*/}
+                    </Text>
                   </CardItem>
                 </Card>
               );

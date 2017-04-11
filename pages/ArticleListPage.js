@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Header, Body, Title, Content, Left, Right, Icon, Text, Button, Card, CardItem, Thumbnail } from 'native-base';
+import { Container, Header, Body, Title, Content, Left, Right, Icon, Text, Button, Card, CardItem } from 'native-base';
+import { Image, View } from 'react-native';
 import { ARTICLE_LIST } from '../utils/constants';
 
 export default class ArticleListPage extends Component {
@@ -41,7 +42,7 @@ export default class ArticleListPage extends Component {
           {
             this.state.posts.map((post) => {
               return (
-                <Card key={post.id} style={{ flex: 0 }} button onPress={() => this.props.navigation.navigate('ArticleDetailPage', { post })}>
+                <Card key={post.id} style={{ flex: 0 }}>
                   <CardItem>
                     <Left>
                       <Body>
@@ -50,7 +51,14 @@ export default class ArticleListPage extends Component {
                     </Left>
                   </CardItem>
                   <CardItem cardBody>
-                    <Thumbnail style={{ resizeMode: 'cover' }} square source={{ uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url }} />
+                    <Image
+                      style={{ width: 400, height: 400 }}
+                      source={{
+                        uri: post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square']
+                          ? post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square'].source_url
+                          : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url
+                      }} />
+
                   </CardItem>
                   <CardItem content>
                     <Text>
@@ -59,8 +67,14 @@ export default class ArticleListPage extends Component {
                             .replace(/&nbsp;/g, '')
                             .substr(0, 100)
                       }......
-                      {/*<Button buttonText="Read More" />*/}
                     </Text>
+                  </CardItem>
+                  <CardItem footer>
+                    <Right>
+                      <Button primary bordered rounded onPress={() => this.props.navigation.navigate('ArticleDetailPage', { post })}>
+                        <Text>Read More</Text>
+                      </Button>
+                    </Right>
                   </CardItem>
                 </Card>
               );

@@ -6,7 +6,7 @@ export default class ArticleDetailPage extends Component {
     const post = this.props.navigation.state.params.post;
     return (
       <Container>
-        <Header>
+        {/*<Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
               <Icon name="arrow-back" />
@@ -16,7 +16,7 @@ export default class ArticleDetailPage extends Component {
             <Title>ArticleDetail</Title>
           </Body>
           <Right />
-        </Header>
+        </Header>*/}
         <Content>
           <Card key={post.id} style={{ flex: 0 }}>
             <CardItem>
@@ -27,7 +27,7 @@ export default class ArticleDetailPage extends Component {
               </Left>
             </CardItem>
             <CardItem cardBody>
-              <Thumbnail style={{ resizeMode: 'cover' }} square source={{ uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url }} />
+              <Thumbnail style={{ resizeMode: 'cover' }} square source={{ uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.large.source_url }} />
             </CardItem>
             <CardItem content>
               <Text>

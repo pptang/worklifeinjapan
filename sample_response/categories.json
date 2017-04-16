@@ -1,0 +1,362 @@
+[
+  {
+    "id": 169,
+    "count": 2,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/business-venture",
+    "name": "Business Venture",
+    "slug": "business-venture",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/169"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=169"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 193,
+    "count": 3,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/english",
+    "name": "English",
+    "slug": "english",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/193"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=193"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "count": 71,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/find-your-way",
+    "name": "Find your way",
+    "slug": "find-your-way",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/3"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=3"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 171,
+    "count": 4,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/japanese",
+    "name": "Japanese",
+    "slug": "japanese",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/171"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=171"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "count": 91,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/read-japan-insider",
+    "name": "Read Japan Insider",
+    "slug": "read-japan-insider",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/4"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=4"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 173,
+    "count": 8,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/real-life-in-japan",
+    "name": "Real Life in Japan",
+    "slug": "real-life-in-japan",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/173"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=173"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "count": 66,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/share-story-and-ask",
+    "name": "Share story and Ask",
+    "slug": "share-story-and-ask",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/6"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=6"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 172,
+    "count": 9,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/wij-member",
+    "name": "WIJ Member",
+    "slug": "wij-member",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/172"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=172"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 1,
+    "count": 0,
+    "description": "",
+    "link": "http:\/\/www.worklifeinjapan.net\/category\/uncategorized",
+    "name": "\u672a\u5206\u985e",
+    "slug": "uncategorized",
+    "taxonomy": "category",
+    "parent": 0,
+    "meta": [],
+    "_links": {
+      "self": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories\/1"
+        }
+      ],
+      "collection": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/categories"
+        }
+      ],
+      "about": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/taxonomies\/category"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "http:\/\/www.worklifeinjapan.net\/wp-json\/wp\/v2\/posts?categories=1"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https:\/\/api.w.org\/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

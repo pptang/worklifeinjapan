@@ -5,49 +5,50 @@
  */
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { DrawerNavigator, StackNavigator, DrawerView } from 'react-navigation';
+import { AppRegistry } from 'react-native';
+import MainPage from './pages/MainPage';
+import ArticlesPage from './pages/ArticlesPage';
+import DetailPage from './pages/DetailPage';
+import { View, Image } from 'react-native';
+import { Content } from 'native-base';
+import lang from './i18n/zh-tw';
 
-export default class worklifeinjapan extends Component {
-  render() {
+const LatestArticlesPage = StackNavigator({
+  ArticlesPage: { screen: ArticlesPage },
+  DetailPage: { screen: DetailPage }
+}, {
+  headerMode: 'none',
+  initialRouteName: 'ArticlesPage',
+  initialRouteParams: {
+    categoryId: 193
+  }
+});
+
+const DrawerNavigatorConfig = {
+  drawerWidth: 200,
+  contentOptions: {
+    activeTintColor: '#b51d22'
+  },
+  contentComponent: (props) => {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style={{
+        flex: 1,
+        alignItems: 'center',
+        padding: 30
+      }}>
+        <Image
+          style={{ width: 198, height: 56 }}
+          source={require('./img/logo/wij.png')}
+        />
+        <DrawerView.Items {...props} />
       </View>
-    );
+    )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+const App = DrawerNavigator({
+  [lang.new_article_list]: { screen: LatestArticlesPage },
+}, DrawerNavigatorConfig);
 
-AppRegistry.registerComponent('worklifeinjapan', () => worklifeinjapan);
+AppRegistry.registerComponent('worklifeinjapan', () => App);

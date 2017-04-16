@@ -8,6 +8,7 @@
     "eject-native-base": "node node_modules/native-base/ejectTheme.js"
   },
   "dependencies": {
+    "moment": "^2.18.1",
     "native-base": "2.0.12",
     "react": "15.4.2",
     "react-native": "0.41.2",

@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "193324989468",
+    "firebase_url": "https://worklifeinjapan-b2200.firebaseio.com",
+    "project_id": "worklifeinjapan-b2200",
+    "storage_bucket": "worklifeinjapan-b2200.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193324989468:android:a767a52f91efad4e",
+        "android_client_info": {
+          "package_name": "com.example.paipotang.fcm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193324989468-i5m3cbethm181kqkts5he2mjn56tu9lq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDnBip82nmPb1Nepp-_u5GDp-lwo7-ghE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:193324989468:android:c178c3bc02b35d98",
+        "android_client_info": {
+          "package_name": "com.worklifeinjapan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "193324989468-i5m3cbethm181kqkts5he2mjn56tu9lq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDnBip82nmPb1Nepp-_u5GDp-lwo7-ghE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

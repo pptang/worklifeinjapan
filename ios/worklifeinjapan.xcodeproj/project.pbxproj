@@ -1162,6 +1162,8 @@
 				DEVELOPMENT_TEAM = C4R59J42AY;
 				INFOPLIST_FILE = worklifeinjapan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1180,6 +1182,8 @@
 				DEVELOPMENT_TEAM = C4R59J42AY;
 				INFOPLIST_FILE = worklifeinjapan/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_CFLAGS = "";
+				OTHER_CPLUSPLUSFLAGS = "";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

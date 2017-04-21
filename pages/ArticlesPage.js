@@ -16,32 +16,45 @@ export default class ArticlesPage extends Component {
     };
   }
   componentDidMount() {
+    this.isLoading = true;
+    this.page = 1;
     this.fetchArticles(this.props.navigation.state.params.categoryId);
   }
-  componentWillReceiveProps(props) {
-    this.fetchArticles(props.navigation.state.params.categoryId);
-  }
+  // componentWillReceiveProps(props) {
+  //   this.fetchArticles(props.navigation.state.params.categoryId);
+  // }
   fetchArticles(categoryId) {
+    if (this.totalPages && this.page < this.totalPages) {
+      this.page++;
+    } else if (this.page === this.totalPage) {
+      alert('no more article');
+      return
+    }
     const url = categoryId ?
-      `${ARTICLE_LIST}&categories=${categoryId}`
+      `${ARTICLE_LIST}&categories=${categoryId}&page=${this.page}`
       :
-      ARTICLE_LIST;
-    console.log(url);
+      `${ARTICLE_LIST}&page=${this.page}`;
     return fetch(url)
-      .then(res => res.json())
+      .then(res => {
+        this.totalPages = res.headers.map['x-wp-totalpages'];
+        return res.json();
+      })
       .then((res) => {
-        console.log(res[0].id);
-        this.setState({
-          posts: res
+        this.isLoading = false;
+        this.setState((prevState) => {
+          return {
+            posts: [...prevState.posts, ...res]
+          }
         });
       })
       .catch(err => console.error(err));
   }
+
   render() {
 
     return (
       <Container>
-        <NavBar navigation={this.props.navigation} title={this.props.navigation.state.params.title} goBack={false}/>
+        <NavBar navigation={this.props.navigation} title={this.props.navigation.state.params.title} goBack={false} />
         {/*<Header style={{ backgroundColor: '#fff' }}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.navigate('DrawerOpen')}>
@@ -53,7 +66,15 @@ export default class ArticlesPage extends Component {
           </Body>
           <Right />
         </Header>*/}
-        <Content>
+        <Content
+          onScroll={(event) => {
+            if (!this.isLoading && event.nativeEvent.contentOffset.y + 650 > this.spinnerOffsetTop) {
+              const categoryId = this.props.navigation.state.params.categoryId;
+              this.fetchArticles(categoryId);
+              this.isLoading = true;
+            }
+          }}
+        >
           {
             this.state.posts.length > 0 ?
               this.state.posts.map((post) => {
@@ -91,15 +112,15 @@ export default class ArticlesPage extends Component {
                     </CardItem>*/}
                     <CardItem content>
                       <Left>
-                      <Body>
-                      <Text>
-                        {
-                          post.my_excerpt
-                              .replace(/&nbsp;/g, '')
-                              .substr(0, 100)
-                        }......
+                        <Body>
+                          <Text>
+                            {
+                              post.my_excerpt
+                                .replace(/&nbsp;/g, '')
+                                .substr(0, 100)
+                            }......
                       </Text>
-                      </Body>
+                        </Body>
                       </Left>
                     </CardItem>
                     <CardItem footer>
@@ -115,6 +136,20 @@ export default class ArticlesPage extends Component {
               :
               <Spinner color='red' />
           }
+          {
+            this.state.posts.length > 0 ?
+              <View
+                ref={ref => this.view = ref}
+                onLayout={({ nativeEvent }) => {
+                  this.spinnerOffsetTop = nativeEvent.layout.y;
+                }}
+              >
+                <Spinner color='red' />
+              </View>
+              :
+              null
+          }
+
         </Content>
       </Container>
     );

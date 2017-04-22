@@ -6,31 +6,34 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "eject-native-base": "node node_modules/native-base/ejectTheme.js",
-    "lint": "eslint --fix *.js",
+    "lint": "eslint --fix **/*.js",
     "precommit": "npm run lint"
   },
   "dependencies": {
     "moment": "^2.18.1",
     "native-base": "2.0.12",
-    "react": "15.4.2",
+    "react": "~15.4.1",
     "react-native-fcm": "^6.2.3",
-    "react-native": "0.42.0-rc.1",
+    "react-native": "^0.42.3",
     "react-navigation": "^1.0.0-beta.7"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.2",
-    "babel-jest": "17.0.0",
-    "babel-preset-react-native": "1.9.0",
+    "babel-jest": "^19.0.0",
+    "babel-preset-react-native": "^1.9.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
     "husky": "^0.13.3",
-    "jest": "17.0.0",
+    "jest": "^19.0.2",
     "react-test-renderer": "15.3.2"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/?!(react-native|native-base|react-navigation)"
+    ]
   }
 }

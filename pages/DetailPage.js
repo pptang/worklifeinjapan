@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Container, Header, Body, Title, Content, Left, Right, Icon, Text, Button, Card, CardItem, Thumbnail, H2, Spinner } from 'native-base';
-import { Image, View, WebView } from 'react-native';
+import React, { Component, PropTypes } from 'react';
+import { Container, Body, Content, Left, Card, CardItem, H2 } from 'native-base';
+import { Image, WebView } from 'react-native';
 import NavBar from '../components/NavBar';
 
 const script = `
@@ -15,27 +15,14 @@ const script = `
     document.title = calculator.scrollHeight;
   </script>
 `;
-const style = `
-  <style>
-  body, html, #height-calculator {
-      margin: 0;
-      padding: 0;
-  }
-  #height-calculator {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-  }
-  </style>
-`;
 
 export default class DetailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      height: 0
+      height: 0,
     };
+    this.onNavigationStateChange = this.onNavigationStateChange.bind(this);
   }
 
   onNavigationStateChange(event) {
@@ -48,8 +35,8 @@ export default class DetailPage extends Component {
     const post = this.props.navigation.state.params.post;
     return (
       <Container backgroundColor="white">
-        <NavBar navigation={this.props.navigation} title={this.props.title} goBack={true}/>
-        {/*<Header>
+        <NavBar navigation={this.props.navigation} title={this.props.title} goBack />
+        {/* <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
               <Icon name="arrow-back" />
@@ -75,22 +62,23 @@ export default class DetailPage extends Component {
                 source={{
                   uri: post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square']
                     ? post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square'].source_url
-                    : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url
-                }} />
+                    : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url,
+                }}
+              />
             </CardItem>
             <CardItem content>
-              {/*<Text>
+              {/* <Text>
                 {
                   post.content.plaintext.replace(/&nbsp;/g, '')
                 }
               </Text>*/}
               <WebView
                 scrollEnabled={false}
-                scalesPageToFit={true}
+                scalesPageToFit
                 source={{ html: `${post.content.rendered}${script}` }}
                 style={{ height: this.state.height }}
-                javaScriptEnabled ={true}
-                onNavigationStateChange={this.onNavigationStateChange.bind(this)}
+                javaScriptEnabled
+                onNavigationStateChange={this.onNavigationStateChange}
               />
             </CardItem>
           </Card>
@@ -99,3 +87,14 @@ export default class DetailPage extends Component {
     );
   }
 }
+
+DetailPage.propTypes = {
+  navigation: PropTypes.shape({
+    state: PropTypes.shape({
+      params: PropTypes.shape({
+        post: PropTypes.object,
+      }),
+    }).isRequired,
+  }).isRequired,
+  title: PropTypes.string.isRequired,
+};

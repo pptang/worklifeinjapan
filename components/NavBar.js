@@ -30,6 +30,10 @@ Navbar.propTypes = {
     navigate: PropTypes.func,
   }).isRequired,
   title: PropTypes.string.isRequired,
-  goBack: PropTypes.func.isRequired,
+  goBack: PropTypes.bool.isRequired,
+};
+
+Navbar.defaultProps = {
+  title: 'Work Life in Japan',
 };
 

@@ -98,3 +98,7 @@ DetailPage.propTypes = {
   }).isRequired,
   title: PropTypes.string.isRequired,
 };
+
+DetailPage.defaultProps = {
+  title: 'Work life in Japan',
+};

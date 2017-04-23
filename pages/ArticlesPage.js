@@ -13,6 +13,7 @@ export default class ArticlesPage extends Component {
     this.state = {
       categoryId: null,
       posts: [],
+      hasMoreArticles: true,
     };
   }
   componentDidMount() {
@@ -26,8 +27,9 @@ export default class ArticlesPage extends Component {
   fetchArticles(categoryId) {
     if (this.totalPages && this.page < this.totalPages) {
       this.page = this.page + 1;
-    } else if (this.page === this.totalPage) {
-      // alert('no more article');
+    } else if (this.page === this.totalPages) {
+      this.setState({ hasMoreArticles: false });
+      alert('No more articles');
       return;
     }
     const url = categoryId ?
@@ -36,7 +38,7 @@ export default class ArticlesPage extends Component {
       `${ARTICLE_LIST}&page=${this.page}`;
     fetch(url)
       .then((res) => {
-        this.totalPages = res.headers.map['x-wp-totalpages'];
+        this.totalPages = Number(res.headers.map['x-wp-totalpages'][0]);
         return res.json();
       })
       .then((res) => {
@@ -132,7 +134,7 @@ export default class ArticlesPage extends Component {
               <Spinner color="red" />
           }
           {
-            this.state.posts.length > 0 ?
+            this.state.hasMoreArticles && this.state.posts.length > 0 ?
               <View
                 ref={(ref) => { this.view = ref; }}
                 onLayout={({ nativeEvent }) => {
@@ -158,9 +160,8 @@ ArticlesPage.propTypes = {
     state: PropTypes.shape({
       params: PropTypes.shape({
         title: PropTypes.string,
-        categoryId: PropTypes.string,
+        categoryId: PropTypes.number,
       }),
     }).isRequired,
   }).isRequired,
-  title: PropTypes.string.isRequired,
 };

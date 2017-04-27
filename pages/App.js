@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MainPage from './MainPage';
 import { CATEGORY_LIST } from '../utils/constants';
 
+
 export default class App extends Component {
   constructor(props) {
     super(props);

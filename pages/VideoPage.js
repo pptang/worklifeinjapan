@@ -36,7 +36,7 @@ export default class VideoPage extends Component {
         <NavBar navigation={this.props.navigation} title="Youtube Video" goBack={false} />
         <Content>
           {
-            this.state.videos.map((video) => (
+            this.state.videos.map(video => (
               <Card key={video.id.videoId || video.id.channelId} style={{ flex: 0 }}>
                 <CardItem header>
                   <Left>
@@ -75,9 +75,9 @@ export default class VideoPage extends Component {
   }
 }
 
- VideoPage.propTypes = {
+VideoPage.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func,
-    navigate: PropTypes.func
+    navigate: PropTypes.func,
   }).isRequired,
 };

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { DrawerNavigator, StackNavigator, DrawerView } from 'react-navigation';
+import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import { Container, Content } from 'native-base';
 import { Image } from 'react-native';
 import ArticlesPage from './ArticlesPage';
@@ -27,19 +27,13 @@ const DrawerNavigatorConfig = {
     activeTintColor: '#b51d22',
   },
   contentComponent: props => (
-    <Container
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        padding: 30,
-      }}
-    >
+    <Container>
       <Content>
         <Image
-          style={{ width: 198, height: 56 }}
+          style={{ width: 198, height: 56, marginTop: 20 }}
           source={require('../img/logo/wij.png')}
         />
-        <DrawerView.Items {...props} />
+        <DrawerItems {...props} />
       </Content>
     </Container>
   ),

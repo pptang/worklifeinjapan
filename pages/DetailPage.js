@@ -20,6 +20,8 @@ export default class DetailPage extends Component {
   }
   render() {
     const post = this.props.navigation.state.params.post;
+    console.log('post::', post);
+    const imageBanner = post._embedded['wp:featuredmedia'][0].media_details;
     const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;
     return (
       <Container backgroundColor="white">
@@ -48,9 +50,9 @@ export default class DetailPage extends Component {
               <Image
                 style={{ width: 400, height: 200 }}
                 source={{
-                  uri: post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square']
-                    ? post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square'].source_url
-                    : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url,
+                  uri: imageBanner.sizes['portfolio-default']
+                    ? imageBanner.sizes['portfolio-default'].source_url
+                    : imageBanner.source_url
                 }}
               />
             </CardItem>

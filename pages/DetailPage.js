@@ -3,19 +3,6 @@ import { Container, Body, Content, Left, Card, CardItem, H2 } from 'native-base'
 import { Image, WebView } from 'react-native';
 import NavBar from '../components/NavBar';
 
-const script = `
-  <script>
-    window.location.hash = 1;
-    var calculator = document.createElement("div");
-    calculator.id = "height-calculator";
-    while (document.body.firstChild) {
-        calculator.appendChild(document.body.firstChild);
-    }
-    document.body.appendChild(calculator);
-    document.title = calculator.scrollHeight;
-  </script>
-`;
-
 export default class DetailPage extends Component {
   constructor(props) {
     super(props);
@@ -26,13 +13,14 @@ export default class DetailPage extends Component {
   }
 
   onNavigationStateChange(event) {
-    if (event.title) {
-      const htmlHeight = Number(event.title); // document.body.clientHeight is stored in document.title
+    if (event.jsEvaluationValue) {
+      const htmlHeight = Number(event.jsEvaluationValue);
       this.setState({ height: htmlHeight });
     }
   }
   render() {
     const post = this.props.navigation.state.params.post;
+    const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;
     return (
       <Container backgroundColor="white">
         <NavBar navigation={this.props.navigation} title={this.props.title} goBack />
@@ -75,8 +63,9 @@ export default class DetailPage extends Component {
               <WebView
                 scrollEnabled={false}
                 scalesPageToFit
-                source={{ html: `${post.content.rendered}${script}` }}
+                source={{ html }}
                 style={{ height: this.state.height }}
+                injectedJavaScript="document.body.scrollHeight;"
                 javaScriptEnabled
                 onNavigationStateChange={this.onNavigationStateChange}
               />
@@ -100,5 +89,5 @@ DetailPage.propTypes = {
 };
 
 DetailPage.defaultProps = {
-  title: 'Work life in Japan',
+  title: 'WIJ',
 };

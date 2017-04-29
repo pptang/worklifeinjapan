@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
-import { DrawerNavigator, StackNavigator, DrawerView } from 'react-navigation';
+import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
+import { Container, Content } from 'native-base';
+import { Image } from 'react-native';
 import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
-import { Image, View } from 'react-native';
+import VideoPage from './VideoPage';
 
 function getArticlesPageByCategoryId(categoryId, title) {
   return StackNavigator(
@@ -20,24 +22,20 @@ function getArticlesPageByCategoryId(categoryId, title) {
 }
 
 const DrawerNavigatorConfig = {
-  drawerWidth: 200,
+  drawerWidth: 300,
   contentOptions: {
     activeTintColor: '#b51d22',
   },
   contentComponent: props => (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        padding: 30,
-      }}
-    >
-      <Image
-        style={{ width: 198, height: 56 }}
-        source={require('../img/logo/wij.png')}
-      />
-      <DrawerView.Items {...props} />
-    </View>
+    <Container>
+      <Content>
+        <Image
+          style={{ width: 198, height: 56, marginTop: 20 }}
+          source={require('../img/logo/wij.png')}
+        />
+        <DrawerItems {...props} />
+      </Content>
+    </Container>
   ),
 };
 
@@ -49,6 +47,9 @@ const MainPage = ({ categories }) => {
     };
     return result;
   }, {});
+  routeConfigs['Youtube Video'] = {
+    screen: VideoPage,
+  };
   const Main = DrawerNavigator(routeConfigs, DrawerNavigatorConfig);
   return (
     <Main />

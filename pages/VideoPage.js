@@ -3,6 +3,7 @@ import YouTube from 'react-native-youtube';
 import { Container, Content, Card, CardItem, Body, Left, H3, Text } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
+import ErrorBar from '../components/ErrorBar';
 import { CHANNEL_VIDEO_LIST } from '../utils/constants';
 
 export default class VideoPage extends Component {
@@ -15,6 +16,7 @@ export default class VideoPage extends Component {
       quality: null,
       error: null,
       isPlaying: false,
+      isShowingError: false,
     };
   }
 
@@ -28,13 +30,19 @@ export default class VideoPage extends Component {
           });
         }
       })
-      .catch(err => console.error(err));
+      .catch(() => this.setState({ isShowingError: true }));
   }
 
   render() {
+    const closeErrorBar = () => {
+      this.setState({ isShowingError: false });
+    };
     return (
       <Container>
         <NavBar navigation={this.props.navigation} title="Youtube Video" goBack={false} />
+        {
+          this.state.isShowingError && <ErrorBar close={closeErrorBar} />
+        }
         <Content>
           {
             this.state.videos.length ?

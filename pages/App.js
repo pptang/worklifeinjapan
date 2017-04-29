@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MainPage from './MainPage';
+import ErrorBar from '../components/ErrorBar';
 import { CATEGORY_LIST } from '../utils/constants';
 
 
@@ -8,6 +9,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       categories: [],
+      isShowingError: false,
     };
   }
   componentDidMount() {
@@ -18,15 +20,19 @@ export default class App extends Component {
           categories: res.filter(category => category.count),
         });
       })
-      .catch(err => console.error(err));
+      .catch(() => this.setState({ isShowingError: true }));
   }
+
   render() {
+    const closeErrorBar = () => {
+      this.setState({ isShowingError: false });
+    };
+
     if (this.state.categories.length) {
       return (
         <MainPage categories={this.state.categories} />
       );
     }
-    return null; // TODO: Splash Screen
+    return this.state.isShowingError && <ErrorBar close={closeErrorBar} />; // TODO: Splash Screen
   }
 }
-

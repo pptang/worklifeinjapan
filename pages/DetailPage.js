@@ -20,7 +20,7 @@ export default class DetailPage extends Component {
   }
   render() {
     const post = this.props.navigation.state.params.post;
-    var html = '<!DOCTYPE html><html><body>' + post.content.rendered + '<script>window.location.hash = 1;document.title = document.height;</script></body></html>';
+    const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;
     return (
       <Container backgroundColor="white">
         <NavBar navigation={this.props.navigation} title={this.props.title} goBack />
@@ -63,7 +63,7 @@ export default class DetailPage extends Component {
               <WebView
                 scrollEnabled={false}
                 scalesPageToFit
-                source={{html}}
+                source={{ html }}
                 style={{ height: this.state.height }}
                 injectedJavaScript="document.body.scrollHeight;"
                 javaScriptEnabled

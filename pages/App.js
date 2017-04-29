@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MainPage from './MainPage';
 import { CATEGORY_LIST } from '../utils/constants';
 
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +15,7 @@ export default class App extends Component {
       .then(res => res.json())
       .then((res) => {
         this.setState({
-          categories: res,
+          categories: res.filter(category => category.count),
         });
       })
       .catch(err => console.error(err));

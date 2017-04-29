@@ -38,7 +38,6 @@ export default class ArticlesPage extends Component {
       `${ARTICLE_LIST}&page=${this.page}`;
     fetch(url)
       .then((res) => {
-
         this.totalPages = res.headers.map['x-wp-totalpages'] ?
           Number(res.headers.map['x-wp-totalpages'][0])
           : 0;
@@ -99,10 +98,10 @@ export default class ArticlesPage extends Component {
                       size={150}
                       square
                       source={post.featured_media ?
-                        {
-                          uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.wp_rp_thumbnail.source_url
+                      {
+                        uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.wp_rp_thumbnail.source_url,
 
-                        }
+                      }
                         : require('../img/logo/work-in-japan.png')
                       }
                     />

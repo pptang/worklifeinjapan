@@ -22,7 +22,7 @@ function getArticlesPageByCategoryId(categoryId, title) {
 }
 
 const DrawerNavigatorConfig = {
-  drawerWidth: 300,
+  drawerWidth: 250,
   contentOptions: {
     activeTintColor: '#b51d22',
   },

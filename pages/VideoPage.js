@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import YouTube from 'react-native-youtube';
-import { Container, Content, Card, CardItem, Body, Left, H3, Text, Segment, Icon, Button } from 'native-base';
+import { Container, Content, Card, CardItem, Body, Left, H3, Text } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
-import { CHANNEL_VIDEO_LIST, ERROR_MESSAGE } from '../utils/constants';
+import ErrorBar from '../components/ErrorBar';
+import { CHANNEL_VIDEO_LIST } from '../utils/constants';
 
 export default class VideoPage extends Component {
   constructor(props) {
@@ -32,16 +33,14 @@ export default class VideoPage extends Component {
   }
 
   render() {
+    const closeErrorBar = () => {
+      this.setState({ isShowingError: false });
+    };
     return (
       <Container>
         <NavBar navigation={this.props.navigation} title="Youtube Video" goBack={false} />
         {
-          this.state.isShowingError && <Segment style={{ height: 44, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: 'white' }}>{ERROR_MESSAGE}</Text>
-            <Button onPress={() => this.setState({ isShowingError: false })} style={{ position: 'absolute', right: 5, backgroundColor: 'transparent', borderWidth: 0 }}>
-              <Icon name="cross" android="md-close" style={{ fontSize: 32, color: 'red' }} />
-            </Button>
-          </Segment>
+          this.state.isShowingError && <ErrorBar close={closeErrorBar} />
         }
         <Content>
           {

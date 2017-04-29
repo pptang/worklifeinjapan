@@ -3,6 +3,7 @@ import { Container, Body, Content, Left, Right, Text, Button, Card, CardItem, Sp
 import { View } from 'react-native';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
+import ErrorBar from '../components/ErrorBar';
 import { ARTICLE_LIST } from '../utils/constants';
 import lang from '../i18n/zh-tw';
 
@@ -14,6 +15,7 @@ export default class ArticlesPage extends Component {
       categoryId: null,
       posts: [],
       hasMoreArticles: true,
+      isShowingError: false,
     };
   }
   componentDidMount() {
@@ -47,13 +49,19 @@ export default class ArticlesPage extends Component {
           posts: [...prevState.posts, ...res],
         }));
       })
-      .catch(err => console.error(err));
+      .catch(() => this.setState({ isShowingError: true }));
   }
 
   render() {
+    const closeErrorBar = () => {
+      this.setState({ isShowingError: false });
+    };
     return (
       <Container>
         <NavBar navigation={this.props.navigation} title={this.props.navigation.state.params.title} goBack={false} />
+        {
+          this.state.isShowingError && <ErrorBar close={closeErrorBar} />
+        }
         {/* <Header style={{ backgroundColor: '#fff' }}>
           <Left>
             <Button transparent onPress={() => this.props.navigation.navigate('DrawerOpen')}>

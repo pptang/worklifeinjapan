@@ -107,7 +107,7 @@ export default class ArticlesPage extends Component {
                       square
                       source={post.featured_media ?
                       {
-                        uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.wp_rp_thumbnail.source_url,
+                        uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url,
 
                       }
                         : require('../img/logo/work-in-japan.png')

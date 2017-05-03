@@ -52,7 +52,7 @@ export default class DetailPage extends Component {
                 source={{
                   uri: imageBanner.sizes['portfolio-default']
                     ? imageBanner.sizes['portfolio-default'].source_url
-                    : imageBanner.source_url
+                    : imageBanner.source_url,
                 }}
               />
             </CardItem>

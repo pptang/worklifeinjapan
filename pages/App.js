@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MainPage from './MainPage';
 import ErrorBar from '../components/ErrorBar';
 import { CATEGORY_LIST } from '../utils/constants';
-
+import Firestack from 'react-native-firestack';
 
 export default class App extends Component {
   constructor(props) {
@@ -12,6 +12,16 @@ export default class App extends Component {
       isShowingError: false,
     };
   }
+
+  componentWillMount() {
+    const firestack = new Firestack();
+    firestack.analytics.logEventWithName("launch", {
+      'screen': 'Main screen'
+    })
+    // .then(res => console.log('Sent event named launch'))
+    // .catch(err => console.error('You should never end up here'));
+  }
+
   componentDidMount() {
     fetch(CATEGORY_LIST)
       .then(res => res.json())

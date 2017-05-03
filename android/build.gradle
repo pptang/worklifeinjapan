@@ -22,3 +22,18 @@ allprojects {
         }
     }
 }
+
+task findDuplicates {
+    doLast {
+        def findMe = 'com/google/android/gms/internal/zzble.class'
+        configurations.runtime.asFileTree.matching {
+            include '**/*.jar'
+        }.files.each { File jarFile ->
+            zipTree(jarFile).visit { FileVisitDetails fvd ->
+                if (fvd.path == findMe) {
+                    println "Found $findMe in $jarFile.name"
+                }
+            }
+        }
+    }
+}

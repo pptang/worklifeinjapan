@@ -25,7 +25,7 @@ export default class DetailPage extends Component {
     console.log('post::', post);
 
     const firestack = new Firestack();
-    firestack.analytics.logEventWithName('page_article_detail', { id: post.id.toString() });
+    firestack.analytics.logEventWithName('page_article_detail', { title: post.title.rendered });
 
     const imageBanner = post._embedded['wp:featuredmedia'][0].media_details;
     const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;

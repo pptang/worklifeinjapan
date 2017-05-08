@@ -53,7 +53,7 @@ export default class ArticlesPage extends Component {
         }));
 
         const firestack = new Firestack();
-        firestack.analytics.logEventWithName('page_article', { category: categoryId.toString() });
+        firestack.analytics.logEventWithName('page_article', { category: this.props.navigation.state.params.title });
       })
       .catch(() => this.setState({ isShowingError: true }));
   }

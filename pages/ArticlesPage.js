@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
 import { ARTICLE_LIST } from '../utils/constants';
 import lang from '../i18n/zh-tw';
+import Firestack from 'react-native-firestack';
 
 export default class ArticlesPage extends Component {
   constructor(props) {
@@ -50,6 +51,9 @@ export default class ArticlesPage extends Component {
         this.setState(prevState => ({
           posts: [...prevState.posts, ...res],
         }));
+
+        const firestack = new Firestack();
+        firestack.analytics.logEventWithName('page_article', { category: categoryId.toString() });
       })
       .catch(() => this.setState({ isShowingError: true }));
   }

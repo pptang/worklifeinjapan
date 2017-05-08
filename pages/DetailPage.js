@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Container, Body, Content, Left, Card, CardItem, H2 } from 'native-base';
 import { Image, WebView } from 'react-native';
 import NavBar from '../components/NavBar';
+import Firestack from 'react-native-firestack';
 
 export default class DetailPage extends Component {
   constructor(props) {
@@ -18,9 +19,14 @@ export default class DetailPage extends Component {
       this.setState({ height: htmlHeight });
     }
   }
+
   render() {
     const post = this.props.navigation.state.params.post;
     console.log('post::', post);
+
+    const firestack = new Firestack();
+    firestack.analytics.logEventWithName('page_article_detail', { id: post.id.toString() });
+
     const imageBanner = post._embedded['wp:featuredmedia'][0].media_details;
     const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;
     return (

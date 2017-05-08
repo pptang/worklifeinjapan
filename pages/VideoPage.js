@@ -5,6 +5,7 @@ import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
 import { CHANNEL_VIDEO_LIST } from '../utils/constants';
+import Firestack from 'react-native-firestack';
 
 export default class VideoPage extends Component {
   constructor(props) {
@@ -28,6 +29,9 @@ export default class VideoPage extends Component {
           this.setState({
             videos: res.items,
           });
+
+          const firestack = new Firestack();
+          firestack.analytics.logEventWithName('page_video', {});
         }
       })
       .catch(() => this.setState({ isShowingError: true }));

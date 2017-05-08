@@ -15,11 +15,7 @@ export default class App extends Component {
 
   componentWillMount() {
     const firestack = new Firestack();
-    firestack.analytics.logEventWithName('launch', {
-      screen: 'Main screen',
-    });
-    // .then(res => console.log('Sent event named launch'))
-    // .catch(err => console.error('You should never end up here'));
+    firestack.analytics.logEventWithName('page_main', {});
   }
 
   componentDidMount() {

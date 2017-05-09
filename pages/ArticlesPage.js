@@ -138,7 +138,7 @@ export default class ArticlesPage extends Component {
                   </CardItem>
                   <CardItem footer>
                     <Right>
-                      <Button danger bordered rounded onPress={() => this.props.navigation.navigate('DetailPage', { post, title: this.props.navigation.state.params.title })}>
+                      <Button danger bordered rounded onPress={() => this.props.navigation.navigate('DetailPage', { post })}>
                         <Text>{lang.continue_reading}</Text>
                       </Button>
                     </Right>

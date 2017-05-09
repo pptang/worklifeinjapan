@@ -1,9 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
 
+
 export default function Navbar({ navigation, title, goBack }) {
   return (
-    <Header style={{ backgroundColor: '#fff' }}>
+    <Header style={{ backgroundColor: '#fff', width: '100%', position: 'relative' }}>
       <Left>
         {
           goBack ?
@@ -11,15 +12,19 @@ export default function Navbar({ navigation, title, goBack }) {
               <Icon name="arrow-back" style={{ color: '#b51d22' }} />
             </Button>
             :
-            <Button transparent onPress={() => navigation.navigate('DrawerOpen')}>
+            <Button androidRippleColor="red" transparent onPress={() => navigation.navigate('DrawerOpen')}>
               <Icon name="menu" style={{ color: '#b51d22' }} />
             </Button>
         }
       </Left>
-      <Body>
-        <Title style={{ color: '#b51d22' }}>{title}</Title>
+      <Body style={{ position: 'absolute', left: '15%', width: '70%' }}>
+        <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{title}</Title>
       </Body>
-      <Right />
+      <Right style={{ width: '15%', position: 'absolute', right: 15 }} >
+        <Button transparent>
+          <Icon name="search" style={{ color: '#b51d22' }} />
+        </Button>
+      </Right>
     </Header>
   );
 }
@@ -36,4 +41,3 @@ Navbar.propTypes = {
 Navbar.defaultProps = {
   title: 'Work Life in Japan',
 };
-

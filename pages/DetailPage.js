@@ -25,7 +25,7 @@ export default class DetailPage extends Component {
     const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;
     return (
       <Container backgroundColor="white">
-        <NavBar navigation={this.props.navigation} title={this.props.title} goBack />
+        <NavBar navigation={this.props.navigation} title={post.title.rendered} goBack />
         {/* <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -52,7 +52,7 @@ export default class DetailPage extends Component {
                 source={{
                   uri: imageBanner.sizes['portfolio-default']
                     ? imageBanner.sizes['portfolio-default'].source_url
-                    : imageBanner.source_url
+                    : imageBanner.source_url,
                 }}
               />
             </CardItem>
@@ -86,10 +86,5 @@ DetailPage.propTypes = {
         post: PropTypes.object,
       }),
     }).isRequired,
-  }).isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-DetailPage.defaultProps = {
-  title: 'WIJ',
+  }).isRequired
 };

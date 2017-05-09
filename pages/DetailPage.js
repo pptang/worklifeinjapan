@@ -86,5 +86,5 @@ DetailPage.propTypes = {
         post: PropTypes.object,
       }),
     }).isRequired,
-  }).isRequired
+  }).isRequired,
 };

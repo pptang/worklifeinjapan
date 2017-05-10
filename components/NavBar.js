@@ -1,32 +1,50 @@
-import React, { PropTypes } from 'react';
-import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
+import React, { Component, PropTypes } from 'react';
+import { Header, Body, Title, Left, Right, Icon, Button, Item, Input } from 'native-base';
 
 
-export default function Navbar({ navigation, title, goBack }) {
-  return (
-    <Header style={{ backgroundColor: '#fff', width: '100%', position: 'relative' }}>
-      <Left>
-        {
-          goBack ?
-            <Button transparent onPress={() => navigation.goBack()}>
-              <Icon name="arrow-back" style={{ color: '#b51d22' }} />
-            </Button>
+export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isSearching: false,
+    };
+  }
+
+  render() {
+    return (
+      <Header style={{ backgroundColor: '#fff', width: '100%', position: 'relative' }}>
+        <Left>
+          {
+            this.props.goBack ?
+              <Button transparent onPress={() => this.props.navigation.goBack()}>
+                <Icon name="arrow-back" style={{ color: '#b51d22' }} />
+              </Button>
+              :
+              <Button transparent onPress={() => this.props.navigation.navigate('DrawerOpen')}>
+                <Icon name="menu" style={{ color: '#b51d22' }} />
+              </Button>
+          }
+        </Left>
+        <Body style={{ position: 'absolute', left: '15%', width: '70%' }}>
+          {
+          this.state.isSearching ?
+            <Item rounded>
+              <Input placeholder="搜尋文章" />
+            </Item>
             :
-            <Button androidRippleColor="red" transparent onPress={() => navigation.navigate('DrawerOpen')}>
-              <Icon name="menu" style={{ color: '#b51d22' }} />
-            </Button>
+            <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{this.props.title}</Title>
         }
-      </Left>
-      <Body style={{ position: 'absolute', left: '15%', width: '70%' }}>
-        <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{title}</Title>
-      </Body>
-      <Right style={{ width: '15%', position: 'absolute', right: 15 }} >
-        <Button transparent>
-          <Icon name="search" style={{ color: '#b51d22' }} />
-        </Button>
-      </Right>
-    </Header>
-  );
+
+        </Body>
+        <Right style={{ width: '15%', position: 'absolute', right: 15 }} >
+          <Button transparent onPress={() => this.setState({ isSearching: true })}>
+            <Icon name="search" style={{ color: '#b51d22' }} />
+          </Button>
+        </Right>
+      </Header>
+    );
+  }
+
 }
 
 Navbar.propTypes = {
@@ -36,8 +54,4 @@ Navbar.propTypes = {
   }).isRequired,
   title: PropTypes.string.isRequired,
   goBack: PropTypes.bool.isRequired,
-};
-
-Navbar.defaultProps = {
-  title: 'Work Life in Japan',
 };

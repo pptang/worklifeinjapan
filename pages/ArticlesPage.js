@@ -31,7 +31,6 @@ export default class ArticlesPage extends Component {
       this.page = this.page + 1;
     } else if (this.page === this.totalPages) {
       this.setState({ hasMoreArticles: false });
-      alert('No more articles');
       return;
     }
     const url = categoryId ?

@@ -20,12 +20,15 @@ export default class DetailPage extends Component {
   }
   render() {
     const post = this.props.navigation.state.params.post;
-    console.log('post::', post);
     const imageBanner = post._embedded['wp:featuredmedia'][0].media_details;
     const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;
+    const shareContent = {
+      title: post.title.rendered,
+      message: post.link,
+    };
     return (
       <Container backgroundColor="white">
-        <NavBar navigation={this.props.navigation} title={this.props.title} goBack />
+        <NavBar navigation={this.props.navigation} title={this.props.title} goBack showShare shareContent={shareContent} />
         {/* <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -52,7 +55,7 @@ export default class DetailPage extends Component {
                 source={{
                   uri: imageBanner.sizes['portfolio-default']
                     ? imageBanner.sizes['portfolio-default'].source_url
-                    : imageBanner.source_url
+                    : imageBanner.source_url,
                 }}
               />
             </CardItem>

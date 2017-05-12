@@ -25,11 +25,19 @@ export default class Navbar extends Component {
               </Button>
           }
         </Left>
-        <Body style={{ position: 'absolute', left: '15%', width: '70%' }}>
+        <Body style={{ position: 'absolute', left: '15%', width: '75%' }}>
           {
           this.state.isSearching ?
             <Item rounded>
-              <Input placeholder="搜尋文章" />
+              <Input
+                autoFocus placeholder="搜尋文章"
+                onBlur={() => {
+                  this.setState({ isSearching: false });
+                }}
+                onSubmitEditing={() => {
+                  this.setState({ isSearching: false });
+                }}
+              />
             </Item>
             :
             <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{this.props.title}</Title>

@@ -29,7 +29,7 @@ export default class Navbar extends Component {
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
         alert(SHARE_SUCCESS);
-        this.setState({ result: 'shared with an activityType: ' + result.activityType });
+        this.setState({ result: `shared with an activityType: ${result.activityType}` });
       } else {
         // alert(SHARE_SUCCESS + 'test');
         this.setState({ result: 'shared' });
@@ -84,12 +84,16 @@ Navbar.propTypes = {
   shareContent: PropTypes.shape({
     title: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
-  }).isRequired
+  }).isRequired,
 };
 
 Navbar.defaultProps = {
   title: 'Work Life in Japan',
   goBack: false,
   showShare: false,
+  shareContent: {
+    title: 'work life in japan',
+    message: '',
+  },
 };
 

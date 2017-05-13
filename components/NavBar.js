@@ -38,7 +38,7 @@ export default class Navbar extends Component {
                   this.setState({ isSearching: false });
                 }}
                 onSubmitEditing={() => {
-                  this.setState({ isSearching: false });
+                  this.setState({ isSearching: false, searchText: '' });
                   this.props.navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
                 }}
               />

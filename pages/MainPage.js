@@ -5,6 +5,7 @@ import { Image } from 'react-native';
 import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
+import lang from '../i18n/zh-tw';
 
 function getArticlesPageByCategoryId(categoryId, title) {
   return StackNavigator(
@@ -41,8 +42,12 @@ const DrawerNavigatorConfig = {
 
 const MainPage = ({ categories }) => {
   const routeConfigs = categories.reduce((result, category) => {
-    const component = getArticlesPageByCategoryId(category.id, category.slug);
-    result[category.slug] = { // eslint-disable-line no-param-reassign
+    let title = category.name;
+    if (lang[category.slug]) {
+      title = lang[category.slug];
+    }
+    const component = getArticlesPageByCategoryId(category.id, title);
+    result[title] = { // eslint-disable-line no-param-reassign
       screen: component,
     };
     return result;

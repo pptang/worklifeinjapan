@@ -21,22 +21,26 @@ export default class ArticlesPage extends Component {
   componentDidMount() {
     this.isLoading = true;
     this.page = 1;
-    this.fetchArticles(this.props.navigation.state.params.categoryId);
+    this.fetchArticles(this.props.navigation.state.params.categoryId, this.props.navigation.state.params.query);
   }
   // componentWillReceiveProps(props) {
   //   this.fetchArticles(props.navigation.state.params.categoryId);
   // }
-  fetchArticles(categoryId) {
+  fetchArticles(categoryId, query) {
     if (this.totalPages && this.page < this.totalPages) {
       this.page = this.page + 1;
     } else if (this.page === this.totalPages) {
       this.setState({ hasMoreArticles: false });
       return;
     }
-    const url = categoryId ?
-      `${ARTICLE_LIST}&categories=${categoryId}&page=${this.page}`
-      :
-      `${ARTICLE_LIST}&page=${this.page}`;
+
+    const url = query !== '' ? `${ARTICLE_LIST}&search=${query}&page=${this.page}`
+        :
+      // (categoryId ?
+        `${ARTICLE_LIST}&categories=${categoryId}&page=${this.page}`;
+        // :
+        // `${ARTICLE_LIST}&page=${this.page}`);
+
     fetch(url)
       .then((res) => {
         this.totalPages = res.headers.map['x-wp-totalpages'] ?
@@ -78,7 +82,8 @@ export default class ArticlesPage extends Component {
           onScroll={(event) => {
             if (!this.isLoading && event.nativeEvent.contentOffset.y + 650 > this.spinnerOffsetTop) {
               const categoryId = this.props.navigation.state.params.categoryId;
-              this.fetchArticles(categoryId);
+              const query = this.props.navigation.state.params.query;
+              this.fetchArticles(categoryId, query);
               this.isLoading = true;
             }
           }}
@@ -175,6 +180,7 @@ ArticlesPage.propTypes = {
       params: PropTypes.shape({
         title: PropTypes.string,
         categoryId: PropTypes.number,
+        query: PropTypes.string,
       }),
     }).isRequired,
   }).isRequired,

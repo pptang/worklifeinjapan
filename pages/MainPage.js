@@ -6,17 +6,19 @@ import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
 
-function getArticlesPageByCategoryId(categoryId, title) {
+function getArticlesPageByCategoryId(categoryId, title, query) {
   return StackNavigator(
     {
       ArticlesPage: { screen: ArticlesPage },
       DetailPage: { screen: DetailPage },
+      SearchPage: { screen: ArticlesPage },
     }, {
       headerMode: 'none',
       initialRouteName: 'ArticlesPage',
       initialRouteParams: {
         title,
         categoryId,
+        query,
       },
     });
 }
@@ -41,7 +43,7 @@ const DrawerNavigatorConfig = {
 
 const MainPage = ({ categories }) => {
   const routeConfigs = categories.reduce((result, category) => {
-    const component = getArticlesPageByCategoryId(category.id, category.slug);
+    const component = getArticlesPageByCategoryId(category.id, category.slug, '');
     result[category.slug] = { // eslint-disable-line no-param-reassign
       screen: component,
     };

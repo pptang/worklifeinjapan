@@ -7,6 +7,7 @@ export default class Navbar extends Component {
     super(props);
     this.state = {
       isSearching: false,
+      searchText: '',
     };
   }
 
@@ -31,11 +32,14 @@ export default class Navbar extends Component {
             <Item rounded>
               <Input
                 autoFocus placeholder="搜尋文章"
+                onChangeText={searchText => this.setState({ searchText })}
+                value={this.state.searchText}
                 onBlur={() => {
                   this.setState({ isSearching: false });
                 }}
                 onSubmitEditing={() => {
                   this.setState({ isSearching: false });
+                  this.props.navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
                 }}
               />
             </Item>

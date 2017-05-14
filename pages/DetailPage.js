@@ -13,19 +13,37 @@ export default class DetailPage extends Component {
   }
 
   onNavigationStateChange(event) {
+    let htmlHeight;
     if (event.jsEvaluationValue) {
-      const htmlHeight = Number(event.jsEvaluationValue);
-      this.setState({ height: htmlHeight });
+      htmlHeight = Number(event.jsEvaluationValue);
+    } else {
+      htmlHeight = Number(event.title);
     }
+    this.setState({ height: htmlHeight });
   }
   render() {
     const post = this.props.navigation.state.params.post;
-    console.log('post::', post);
     const imageBanner = post._embedded['wp:featuredmedia'][0].media_details;
-    const html = `<!DOCTYPE html><html><body>${post.content.rendered}<script>window.location.hash = 1;document.title = document.height;</script></body></html>`;
+    const html = `
+      <!DOCTYPE html>
+        <html>
+          <body>
+            <div id="content">
+              ${post.content.rendered}
+            </div>
+            <script>
+              window.location.hash = 1;
+              document.title = document.body.scrollHeight;
+            </script>
+          </body>
+        </html>`;
+    const shareContent = {
+      title: post.title.rendered,
+      message: post.link,
+    };
     return (
       <Container backgroundColor="white">
-        <NavBar navigation={this.props.navigation} title={post.title.rendered} goBack />
+        <NavBar navigation={this.props.navigation} title={post.title.rendered} goBack showShare shareContent={shareContent} />
         {/* <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>

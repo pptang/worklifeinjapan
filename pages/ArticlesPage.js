@@ -21,23 +21,26 @@ export default class ArticlesPage extends Component {
   componentDidMount() {
     this.isLoading = true;
     this.page = 1;
-    this.fetchArticles(this.props.navigation.state.params.categoryId);
+    this.fetchArticles(this.props.navigation.state.params.categoryId, this.props.navigation.state.params.query);
   }
   // componentWillReceiveProps(props) {
   //   this.fetchArticles(props.navigation.state.params.categoryId);
   // }
-  fetchArticles(categoryId) {
+  fetchArticles(categoryId, query) {
     if (this.totalPages && this.page < this.totalPages) {
       this.page = this.page + 1;
     } else if (this.page === this.totalPages) {
       this.setState({ hasMoreArticles: false });
-      alert('No more articles');
       return;
     }
-    const url = categoryId ?
-      `${ARTICLE_LIST}&categories=${categoryId}&page=${this.page}`
-      :
-      `${ARTICLE_LIST}&page=${this.page}`;
+
+    const url = query !== '' ? `${ARTICLE_LIST}&search=${query}&page=${this.page}`
+        :
+      // (categoryId ?
+        `${ARTICLE_LIST}&categories=${categoryId}&page=${this.page}`;
+        // :
+        // `${ARTICLE_LIST}&page=${this.page}`);
+
     fetch(url)
       .then((res) => {
         this.totalPages = res.headers.map['x-wp-totalpages'] ?
@@ -79,7 +82,8 @@ export default class ArticlesPage extends Component {
           onScroll={(event) => {
             if (!this.isLoading && event.nativeEvent.contentOffset.y + 650 > this.spinnerOffsetTop) {
               const categoryId = this.props.navigation.state.params.categoryId;
-              this.fetchArticles(categoryId);
+              const query = this.props.navigation.state.params.query;
+              this.fetchArticles(categoryId, query);
               this.isLoading = true;
             }
           }}
@@ -138,7 +142,7 @@ export default class ArticlesPage extends Component {
                   </CardItem>
                   <CardItem footer>
                     <Right>
-                      <Button danger bordered rounded onPress={() => this.props.navigation.navigate('DetailPage', { post, title: this.props.navigation.state.params.title })}>
+                      <Button danger bordered rounded onPress={() => this.props.navigation.navigate('DetailPage', { post })}>
                         <Text>{lang.continue_reading}</Text>
                       </Button>
                     </Right>
@@ -176,6 +180,7 @@ ArticlesPage.propTypes = {
       params: PropTypes.shape({
         title: PropTypes.string,
         categoryId: PropTypes.number,
+        query: PropTypes.string,
       }),
     }).isRequired,
   }).isRequired,

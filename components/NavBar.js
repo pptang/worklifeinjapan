@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
+import { Header, Body, Title, Left, Right, Icon, Button, Item, Input } from 'native-base';
 import { Share } from 'react-native';
 import { SHARE_CANCELL, SHARE_SUCCESS, SHARE_FAIL } from '../utils/constants';
+
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -9,9 +10,12 @@ export default class Navbar extends Component {
     this._shareText = this._shareText.bind(this);
     // this._showResult = this._showResult.bind(this);
     this.state = {
+      isSearching: false,
+      searchText: '',
       result: '',
     };
   }
+
   _shareText() {
     const { message, title } = this.props.shareContent;
     Share.share({
@@ -39,10 +43,11 @@ export default class Navbar extends Component {
       this.setState({ result: 'dismissed' });
     }
   }
+
   render() {
     const { navigation, title, goBack, showShare } = this.props;
     return (
-      <Header style={{ backgroundColor: '#fff' }}>
+      <Header style={{ backgroundColor: '#fff', width: '100%', position: 'relative' }}>
         <Left>
           {
             goBack ?
@@ -55,22 +60,43 @@ export default class Navbar extends Component {
               </Button>
           }
         </Left>
-        <Body>
-          <Title style={{ color: '#b51d22' }}>{title}</Title>
-        </Body>
-        <Right>
+        <Body style={{ position: 'absolute', left: '15%', width: '75%' }}>
           {
-            showShare ?
-              <Button transparent onPress={this._shareText}>
-                <Icon name="share" style={{ color: '#b51d22' }} />
-              </Button>
-              : null
-          }
+          this.state.isSearching ?
+            <Item rounded>
+              <Input
+                autoFocus placeholder="搜尋文章"
+                onChangeText={searchText => this.setState({ searchText })}
+                value={this.state.searchText}
+                onBlur={() => {
+                  this.setState({ isSearching: false });
+                }}
+                onSubmitEditing={() => {
+                  this.setState({ isSearching: false, searchText: '' });
+                  navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
+                }}
+              />
+            </Item>
+            :
+            <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{title}</Title>
+        }
+
+        </Body>
+        <Right style={{ width: '15%', position: 'absolute', right: 15 }} >
+          {
+          showShare ?
+            <Button transparent onPress={this._shareText}>
+              <Icon name="share" style={{ color: '#b51d22' }} />
+            </Button>
+            : <Button transparent onPress={() => this.setState({ isSearching: true })}>
+              <Icon name="search" style={{ color: '#b51d22' }} />
+            </Button>
+        }
+
         </Right>
       </Header>
     );
   }
-
 }
 
 Navbar.propTypes = {
@@ -96,4 +122,3 @@ Navbar.defaultProps = {
     message: '',
   },
 };
-

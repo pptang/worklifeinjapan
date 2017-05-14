@@ -7,17 +7,19 @@ import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
 import lang from '../i18n/zh-tw';
 
-function getArticlesPageByCategoryId(categoryId, title) {
+function getArticlesPageByCategoryId(categoryId, title, query) {
   return StackNavigator(
     {
       ArticlesPage: { screen: ArticlesPage },
       DetailPage: { screen: DetailPage },
+      SearchPage: { screen: ArticlesPage },
     }, {
       headerMode: 'none',
       initialRouteName: 'ArticlesPage',
       initialRouteParams: {
         title,
         categoryId,
+        query,
       },
     });
 }
@@ -46,13 +48,13 @@ const MainPage = ({ categories }) => {
     if (lang[category.slug]) {
       title = lang[category.slug];
     }
-    const component = getArticlesPageByCategoryId(category.id, title);
+    const component = getArticlesPageByCategoryId(category.id, title, '');
     result[title] = { // eslint-disable-line no-param-reassign
       screen: component,
     };
     return result;
   }, {});
-  routeConfigs['Youtube Video'] = {
+  routeConfigs['Youtube 影片'] = {
     screen: VideoPage,
   };
   const Main = DrawerNavigator(routeConfigs, DrawerNavigatorConfig);

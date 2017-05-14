@@ -10,7 +10,7 @@ const lang = {
   "read-japan-insider": '日本洞見', // 4"
   "real-life-in-japan": '日本生活', // 173
   "share-story-and-ask": '人物專訪', // 6
-  "wij-member": 'WIJ成員分享', // 172
+  "wij-member": 'WIJ 成員分享', // 172
 };
 /* eslint-enable */
 export default lang;

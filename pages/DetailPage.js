@@ -43,7 +43,7 @@ export default class DetailPage extends Component {
     };
     return (
       <Container backgroundColor="white">
-        <NavBar navigation={this.props.navigation} title={this.props.title} goBack showShare shareContent={shareContent} />
+        <NavBar navigation={this.props.navigation} title={post.title.rendered} goBack showShare shareContent={shareContent} />
         {/* <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -105,9 +105,4 @@ DetailPage.propTypes = {
       }),
     }).isRequired,
   }).isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-DetailPage.defaultProps = {
-  title: 'WIJ',
 };

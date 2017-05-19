@@ -32,8 +32,10 @@ export default class DetailPage extends Component {
               ${post.content.rendered}
             </div>
             <script>
-              window.location.hash = 1;
-              document.title = document.body.scrollHeight;
+              setTimeout(function() {
+                document.title = document.body.scrollHeight;
+                window.location.hash = 1;
+              }, 500);
             </script>
           </body>
         </html>`;

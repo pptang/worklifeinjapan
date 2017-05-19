@@ -16,6 +16,7 @@ export default class ArticlesPage extends Component {
       posts: [],
       hasMoreArticles: true,
       isShowingError: false,
+      hasSearchResult: true,
     };
   }
   componentDidMount() {
@@ -50,9 +51,16 @@ export default class ArticlesPage extends Component {
       })
       .then((res) => {
         this.isLoading = false;
-        this.setState(prevState => ({
-          posts: [...prevState.posts, ...res],
-        }));
+        if (res.length > 0) {
+          this.setState(prevState => ({
+            posts: [...prevState.posts, ...res],
+          }));
+        } else {
+          this.setState({
+            hasMoreArticles: false,
+            hasSearchResult: false,
+          });
+        }
       })
       .catch(() => this.setState({ isShowingError: true }));
   }
@@ -88,8 +96,7 @@ export default class ArticlesPage extends Component {
             }
           }}
         >
-          {
-            this.state.posts.length > 0 ?
+          { this.state.hasSearchResult ?
               this.state.posts.map(post => (
                 <Card key={post.id} style={{ flex: 0 }}>
                   <CardItem header>
@@ -114,29 +121,29 @@ export default class ArticlesPage extends Component {
                         uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url,
 
                       }
-                        : require('../img/logo/work-in-japan.png')
-                      }
+                      : require('../img/logo/work-in-japan.png')
+                    }
                     />
                   </CardItem>
                   {/* <CardItem cardBody>
-                      <Image
-                        style={{ width: 400, height: 200 }}
-                        source={{
-                          uri: post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square']
-                            ? post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square'].source_url
-                            : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url
-                        }} />
-                    </CardItem>*/}
+                    <Image
+                      style={{ width: 400, height: 200 }}
+                      source={{
+                        uri: post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square']
+                          ? post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square'].source_url
+                          : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url
+                      }} />
+                  </CardItem>*/}
                   <CardItem content>
                     <Left>
                       <Body>
                         <Text>
                           {
-                            post.my_excerpt
-                              .replace(/&nbsp;/g, '')
-                              .substr(0, 100)
-                          }......
-                      </Text>
+                          post.my_excerpt
+                            .replace(/&nbsp;/g, '')
+                            .substr(0, 100)
+                        }......
+                    </Text>
                       </Body>
                     </Left>
                   </CardItem>
@@ -148,12 +155,20 @@ export default class ArticlesPage extends Component {
                     </Right>
                   </CardItem>
                 </Card>
-              ))
-              :
-              <Spinner color="red" />
+            ))
+            :
+              <Card transparent key="no-result" style={{ flex: 0 }}>
+                <CardItem content>
+                  <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Text>
+                      搜尋不到結果
+                    </Text>
+                  </Body>
+                </CardItem>
+              </Card>
           }
           {
-            this.state.hasMoreArticles && this.state.posts.length > 0 ?
+            this.state.hasMoreArticles && this.state.posts.length >= 0 ?
               <View
                 ref={(ref) => { this.view = ref; }}
                 onLayout={({ nativeEvent }) => {

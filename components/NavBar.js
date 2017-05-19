@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Header, Body, Title, Left, Right, Icon, Button, Item, Input } from 'native-base';
-import { Share } from 'react-native';
+import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
+import { Share, TextInput } from 'react-native';
 import { SHARE_CANCELL, SHARE_SUCCESS, SHARE_FAIL } from '../utils/constants';
 
 
@@ -63,20 +63,21 @@ export default class Navbar extends Component {
         <Body style={{ position: 'absolute', left: '15%', width: '75%' }}>
           {
           this.state.isSearching ?
-            <Item rounded>
-              <Input
-                autoFocus placeholder="搜尋文章"
-                onChangeText={searchText => this.setState({ searchText })}
-                value={this.state.searchText}
-                onBlur={() => {
-                  this.setState({ isSearching: false });
-                }}
-                onSubmitEditing={() => {
-                  this.setState({ isSearching: false, searchText: '' });
-                  navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
-                }}
-              />
-            </Item>
+            <TextInput
+              style={{ width: '100%' }}
+              autoFocus placeholder="搜尋文章"
+              underlineColorAndroid="#b51d22"
+              onChangeText={searchText => this.setState({ searchText })}
+              value={this.state.searchText}
+              onBlur={() => {
+                this.setState({ isSearching: false });
+              }}
+              onSubmitEditing={() => {
+                this.setState({ isSearching: false, searchText: '' });
+                navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
+              }}
+            />
+
             :
             <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{title}</Title>
         }

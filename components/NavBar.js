@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
-import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
-import { Share, TextInput } from 'react-native';
+import { Header, Body, Title, Left, Right, Icon, Button, Item, Input, Text } from 'native-base';
+import { Share } from 'react-native';
 import { SHARE_CANCELL, SHARE_SUCCESS, SHARE_FAIL } from '../utils/constants';
 
 
@@ -47,55 +47,57 @@ export default class Navbar extends Component {
   render() {
     const { navigation, title, goBack, showShare } = this.props;
     return (
-      <Header style={{ backgroundColor: '#fff', width: '100%', position: 'relative' }}>
-        <Left>
-          {
-            goBack ?
-              <Button transparent onPress={() => navigation.goBack()}>
-                <Icon name="arrow-back" style={{ color: '#b51d22' }} />
-              </Button>
-              :
-              <Button transparent onPress={() => navigation.navigate('DrawerOpen')}>
-                <Icon name="menu" style={{ color: '#b51d22' }} />
-              </Button>
-          }
-        </Left>
-        <Body style={{ position: 'absolute', left: '15%', width: '75%' }}>
-          {
-          this.state.isSearching ?
-            <TextInput
-              style={{ width: '100%' }}
+      this.state.isSearching ?
+        <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input
               autoFocus placeholder="搜尋文章"
-              underlineColorAndroid="#b51d22"
               onChangeText={searchText => this.setState({ searchText })}
               value={this.state.searchText}
               onBlur={() => {
                 this.setState({ isSearching: false });
               }}
               onSubmitEditing={() => {
-                this.setState({ isSearching: false, searchText: '' });
                 navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
+                this.setState({ isSearching: false, searchText: '' });
               }}
             />
-
-            :
-            <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{title}</Title>
-        }
-
-        </Body>
-        <Right style={{ width: '15%', position: 'absolute', right: 15 }} >
-          {
-          showShare ?
-            <Button transparent onPress={this._shareText}>
-              <Icon name="share" style={{ color: '#b51d22' }} />
-            </Button>
-            : <Button transparent onPress={() => this.setState({ isSearching: true })}>
-              <Icon name="search" style={{ color: '#b51d22' }} />
-            </Button>
-        }
-
-        </Right>
-      </Header>
+            <Icon name="ios-people" />
+          </Item>
+          <Button transparent>
+            <Text style={{ color: '#b51d22' }}>Search</Text>
+          </Button>
+        </Header>
+        :
+        <Header style={{ backgroundColor: '#fff' }}>
+          <Left>
+            {
+              goBack ?
+                <Button transparent onPress={() => navigation.goBack()}>
+                  <Icon name="arrow-back" style={{ color: '#b51d22' }} />
+                </Button>
+                :
+                <Button transparent onPress={() => navigation.navigate('DrawerOpen')}>
+                  <Icon name="menu" style={{ color: '#b51d22' }} />
+                </Button>
+            }
+          </Left>
+          <Body>
+            <Title style={{ color: '#b51d22' }}>{title}</Title>
+          </Body>
+          <Right>
+            {
+              showShare ?
+                <Button transparent onPress={this._shareText}>
+                  <Icon name="share" style={{ color: '#b51d22' }} />
+                </Button>
+                : <Button transparent onPress={() => this.setState({ isSearching: true })}>
+                  <Icon name="search" style={{ color: '#b51d22' }} />
+                </Button>
+            }
+          </Right>
+        </Header>
     );
   }
 }

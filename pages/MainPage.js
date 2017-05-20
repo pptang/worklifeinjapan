@@ -5,6 +5,7 @@ import { Image } from 'react-native';
 import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
+import AboutPage from './AboutPage';
 import lang from '../i18n/zh-tw';
 
 function getArticlesPageByCategoryId(categoryId, title, query) {
@@ -56,6 +57,9 @@ const MainPage = ({ categories }) => {
   }, {});
   routeConfigs['Youtube 影片'] = {
     screen: VideoPage,
+  };
+  routeConfigs['關於我們'] = {
+    screen: AboutPage,
   };
   const Main = DrawerNavigator(routeConfigs, DrawerNavigatorConfig);
   return (

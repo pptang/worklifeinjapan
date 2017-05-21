@@ -47,7 +47,7 @@ export default class Navbar extends Component {
   render() {
     const { navigation, title, goBack, showShare } = this.props;
     return (
-      <Header>
+      <Header style={{ backgroundColor: '#fff' }}>
         <Left style={{ flex: 1 }}>
           {
             goBack ?
@@ -64,7 +64,7 @@ export default class Navbar extends Component {
           {
             this.state.isSearching ?
               <TextInput
-                style={{ height: '100%' }}
+                style={{ height: '100%', width: '100%' }}
                 autoFocus placeholder="搜尋文章"
                 underlineColorAndroid="#b51d22"
                 onChangeText={searchText => this.setState({ searchText })}

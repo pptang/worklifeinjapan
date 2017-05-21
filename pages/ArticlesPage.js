@@ -71,7 +71,7 @@ export default class ArticlesPage extends Component {
     };
     return (
       <Container>
-        <NavBar navigation={this.props.navigation} title={this.props.navigation.state.params.title} goBack={false} />
+        <NavBar navigation={this.props.navigation} title={this.props.navigation.state.params.title} goBack={!!this.props.navigation.state.params.query} />
         {
           this.state.isShowingError && <ErrorBar close={closeErrorBar} />
         }

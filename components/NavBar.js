@@ -62,37 +62,48 @@ export default class Navbar extends Component {
         </Left>
         <Body style={{ flex: 4 }}>
           {
-          this.state.isSearching ?
-            <TextInput
-              style={{ height: '100%' }}
-              autoFocus placeholder="搜尋文章"
-              underlineColorAndroid="#b51d22"
-              onChangeText={searchText => this.setState({ searchText })}
-              value={this.state.searchText}
-              onBlur={() => {
-                this.setState({ isSearching: false });
-              }}
-              onSubmitEditing={() => {
-                this.setState({ isSearching: false, searchText: '' });
-                navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
-              }}
-            />
-
-            :
-            <Title style={{ color: '#b51d22' }}>{title}</Title>
-        }
+            this.state.isSearching ?
+              <TextInput
+                style={{ height: '100%' }}
+                autoFocus placeholder="搜尋文章"
+                underlineColorAndroid="#b51d22"
+                onChangeText={searchText => this.setState({ searchText })}
+                value={this.state.searchText}
+                onBlur={() => {
+                  this.setState({ isSearching: false });
+                }}
+                onSubmitEditing={() => {
+                  this.setState({ isSearching: false, searchText: '' });
+                  navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
+                }}
+                clearTextOnFocus
+              />
+              :
+              <Title style={{ color: '#b51d22' }}>{title}</Title>
+          }
 
         </Body>
         <Right style={{ flex: 1 }} >
           {
-          showShare ?
-            <Button transparent onPress={this._shareText}>
-              <Icon name="share" style={{ color: '#b51d22' }} />
-            </Button>
-            : <Button transparent onPress={() => this.setState({ isSearching: true })}>
-              <Icon name="search" style={{ color: '#b51d22' }} />
-            </Button>
-        }
+            showShare ?
+              <Button transparent onPress={this._shareText}>
+                <Icon name="share" style={{ color: '#b51d22' }} />
+              </Button>
+              :
+              <Button
+                transparent
+                onPress={() => {
+                  if (this.state.isSearching) {
+                    this.setState({ isSearching: false, searchText: '' });
+                    navigation.navigate('SearchPage', { title: this.state.searchText, categoryId: 0, query: this.state.searchText });
+                  } else {
+                    this.setState({ isSearching: true });
+                  }
+                }}
+              >
+                <Icon name="search" style={{ color: '#b51d22' }} />
+              </Button>
+          }
 
         </Right>
       </Header>

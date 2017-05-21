@@ -47,8 +47,8 @@ export default class Navbar extends Component {
   render() {
     const { navigation, title, goBack, showShare } = this.props;
     return (
-      <Header style={{ backgroundColor: '#fff', width: '100%', position: 'relative' }}>
-        <Left>
+      <Header>
+        <Left style={{ flex: 1 }}>
           {
             goBack ?
               <Button transparent onPress={() => navigation.goBack()}>
@@ -60,11 +60,11 @@ export default class Navbar extends Component {
               </Button>
           }
         </Left>
-        <Body style={{ position: 'absolute', left: '15%', width: '75%' }}>
+        <Body style={{ flex: 4 }}>
           {
           this.state.isSearching ?
             <TextInput
-              style={{ width: '100%' }}
+              style={{ height: '100%' }}
               autoFocus placeholder="搜尋文章"
               underlineColorAndroid="#b51d22"
               onChangeText={searchText => this.setState({ searchText })}
@@ -79,11 +79,11 @@ export default class Navbar extends Component {
             />
 
             :
-            <Title style={{ color: '#b51d22', width: '100%', justifyContent: 'center', alignItems: 'center' }}>{title}</Title>
+            <Title style={{ color: '#b51d22' }}>{title}</Title>
         }
 
         </Body>
-        <Right style={{ width: '15%', position: 'absolute', right: 15 }} >
+        <Right style={{ flex: 1 }} >
           {
           showShare ?
             <Button transparent onPress={this._shareText}>

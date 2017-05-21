@@ -39,7 +39,7 @@ export default class VideoPage extends Component {
     };
     return (
       <Container>
-        <NavBar navigation={this.props.navigation} title="Youtube Video" goBack={false} />
+        <NavBar navigation={this.props.navigation} title="Youtube 影片" goBack={false} />
         {
           this.state.isShowingError && <ErrorBar close={closeErrorBar} />
         }

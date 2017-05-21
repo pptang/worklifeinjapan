@@ -54,7 +54,11 @@ const MainPage = ({ categories }) => {
       screen: component,
     };
     return result;
-  }, {});
+  }, {
+    最新文章: {
+      screen: getArticlesPageByCategoryId(0, '最新文章', ''),
+    },
+  });
   routeConfigs['Youtube 影片'] = {
     screen: VideoPage,
   };

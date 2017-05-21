@@ -35,12 +35,13 @@ export default class ArticlesPage extends Component {
       return;
     }
 
-    const url = query !== '' ? `${ARTICLE_LIST}&search=${query}&page=${this.page}`
-        :
-      // (categoryId ?
-        `${ARTICLE_LIST}&categories=${categoryId}&page=${this.page}`;
-        // :
-        // `${ARTICLE_LIST}&page=${this.page}`);
+    let queryString = '';
+    if (query) {
+      queryString = queryString.concat(`&search=${query}`);
+    } else if (categoryId) {
+      queryString = queryString.concat(`&categories=${categoryId}`);
+    }
+    const url = `${ARTICLE_LIST}${queryString}&page=${this.page}`;
 
     fetch(url)
       .then((res) => {

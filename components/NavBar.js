@@ -47,7 +47,7 @@ export default class Navbar extends Component {
   render() {
     const { navigation, title, goBack, showShare } = this.props;
     return (
-      <Header style={{ backgroundColor: '#fff' }}>
+      <Header style={{ backgroundColor: '#fff' }} androidStatusBarColor="#b51d22">
         <Left style={{ flex: 1 }}>
           {
             goBack ?

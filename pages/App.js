@@ -3,7 +3,6 @@ import MainPage from './MainPage';
 import ErrorBar from '../components/ErrorBar';
 import { CATEGORY_LIST } from '../utils/constants';
 
-
 export default class App extends Component {
   constructor(props) {
     super(props);

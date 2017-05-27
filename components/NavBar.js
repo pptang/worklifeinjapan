@@ -3,6 +3,7 @@ import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
 import { Share, TextInput } from 'react-native';
 import { SHARE_CANCELL, SHARE_SUCCESS, SHARE_FAIL, GET_POST } from '../utils/constants';
 import FCM, { FCMEvent } from 'react-native-fcm';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class Navbar extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ export default class Navbar extends Component {
       searchText: '',
       result: '',
       isShowingError: false,
+      isHandlingPushNotification: false,
     };
     this.handlePushNotification.bind(this);
   }
@@ -72,14 +74,16 @@ export default class Navbar extends Component {
       //   console.log('local_notification::', notif);
       // }
       if (notif.opened_from_tray) {
+        this.setState({ isHandlingPushNotification: true });
         // app is open/resumed because user clicked banner
         const url = `${GET_POST}${notif.article_id}?_embed=true`;
         fetch(url)
           .then(res => res.json())
           .then((res) => {
+            this.setState({ isHandlingPushNotification: false });
             this.props.navigation.navigate('DetailPage', { post: res });
           })
-          .catch(() => this.setState({ isShowingError: true }));
+          .catch(() => this.setState({ isShowingError: true, isHandlingPushNotification: false }));
       }
       // await someAsyncCall();
 
@@ -169,6 +173,9 @@ export default class Navbar extends Component {
           }
 
         </Right>
+        {
+          this.state.isHandlingPushNotification ? <Spinner visible={this.state.isHandlingPushNotification} textContent={'Loading...'} textStyle={{ color: '#b51d22' }} color="#b51d22" /> : null
+        }
       </Header>
     );
   }

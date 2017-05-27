@@ -13,17 +13,39 @@ export default class DetailPage extends Component {
   }
 
   onNavigationStateChange(event) {
+    let htmlHeight;
     if (event.jsEvaluationValue) {
-      const htmlHeight = Number(event.jsEvaluationValue);
-      this.setState({ height: htmlHeight });
+      htmlHeight = Number(event.jsEvaluationValue);
+    } else {
+      htmlHeight = Number(event.title);
     }
+    this.setState({ height: htmlHeight });
   }
   render() {
     const post = this.props.navigation.state.params.post;
-    var html = '<!DOCTYPE html><html><body>' + post.content.rendered + '<script>window.location.hash = 1;document.title = document.height;</script></body></html>';
+    const imageBanner = post._embedded['wp:featuredmedia'][0].media_details;
+    const html = `
+      <!DOCTYPE html>
+        <html>
+          <body>
+            <div id="content">
+              ${post.content.rendered}
+            </div>
+            <script>
+              setTimeout(function() {
+                document.title = document.body.scrollHeight;
+                window.location.hash = 1;
+              }, 500);
+            </script>
+          </body>
+        </html>`;
+    const shareContent = {
+      title: post.title.rendered,
+      message: post.link,
+    };
     return (
       <Container backgroundColor="white">
-        <NavBar navigation={this.props.navigation} title={this.props.title} goBack />
+        <NavBar navigation={this.props.navigation} title={post.title.rendered} goBack showShare shareContent={shareContent} />
         {/* <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
@@ -48,9 +70,9 @@ export default class DetailPage extends Component {
               <Image
                 style={{ width: 400, height: 200 }}
                 source={{
-                  uri: post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square']
-                    ? post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square'].source_url
-                    : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url,
+                  uri: imageBanner.sizes['portfolio-default']
+                    ? imageBanner.sizes['portfolio-default'].source_url
+                    : imageBanner.source_url,
                 }}
               />
             </CardItem>
@@ -63,7 +85,7 @@ export default class DetailPage extends Component {
               <WebView
                 scrollEnabled={false}
                 scalesPageToFit
-                source={{html}}
+                source={{ html }}
                 style={{ height: this.state.height }}
                 injectedJavaScript="document.body.scrollHeight;"
                 javaScriptEnabled
@@ -85,9 +107,4 @@ DetailPage.propTypes = {
       }),
     }).isRequired,
   }).isRequired,
-  title: PropTypes.string.isRequired,
-};
-
-DetailPage.defaultProps = {
-  title: 'WIJ',
 };

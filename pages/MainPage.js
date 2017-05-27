@@ -5,24 +5,28 @@ import { Image } from 'react-native';
 import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
+import AboutPage from './AboutPage';
+import lang from '../i18n/zh-tw';
 
-function getArticlesPageByCategoryId(categoryId, title) {
+function getArticlesPageByCategoryId(categoryId, title, query) {
   return StackNavigator(
     {
       ArticlesPage: { screen: ArticlesPage },
       DetailPage: { screen: DetailPage },
+      SearchPage: { screen: ArticlesPage },
     }, {
       headerMode: 'none',
       initialRouteName: 'ArticlesPage',
       initialRouteParams: {
         title,
         categoryId,
+        query,
       },
     });
 }
 
 const DrawerNavigatorConfig = {
-  drawerWidth: 300,
+  drawerWidth: 250,
   contentOptions: {
     activeTintColor: '#b51d22',
   },
@@ -41,14 +45,25 @@ const DrawerNavigatorConfig = {
 
 const MainPage = ({ categories }) => {
   const routeConfigs = categories.reduce((result, category) => {
-    const component = getArticlesPageByCategoryId(category.id, category.slug);
-    result[category.slug] = { // eslint-disable-line no-param-reassign
+    let title = category.name;
+    if (lang[category.slug]) {
+      title = lang[category.slug];
+    }
+    const component = getArticlesPageByCategoryId(category.id, title, '');
+    result[title] = { // eslint-disable-line no-param-reassign
       screen: component,
     };
     return result;
-  }, {});
-  routeConfigs['Youtube Video'] = {
+  }, {
+    最新文章: {
+      screen: getArticlesPageByCategoryId(0, '最新文章', ''),
+    },
+  });
+  routeConfigs['Youtube 影片'] = {
     screen: VideoPage,
+  };
+  routeConfigs['關於我們'] = {
+    screen: AboutPage,
   };
   const Main = DrawerNavigator(routeConfigs, DrawerNavigatorConfig);
   return (

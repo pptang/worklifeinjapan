@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import YouTube from 'react-native-youtube';
 import { Container, Content, Card, CardItem, Body, Left, H3, Text } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
-import { CHANNEL_VIDEO_LIST } from '../utils/constants';
-import { Image, TouchableHighlight } from 'react-native';
+import { CHANNEL_VIDEO_LIST, YOUTUBE_API_KEY } from '../utils/constants';
 
-export default class VideoPage extends Component {
+export default class VideoDetailPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,12 +65,17 @@ export default class VideoPage extends Component {
                   </CardItem>
                   <CardItem content>
                     <Body>
-                      <TouchableHighlight onPress={() => this.props.navigation.navigate('YoutubeDetailPage', { videoId: video.snippet.videoId, navigation: this.props.navigation, goback: true })}>
-                        <Image
-                          style={{ width: '100%', height: 200 }}
-                          source={{ uri: video.snippet.thumbnails.high.url ? video.snippet.thumbnails.high.url : video.snippet.thumbnails.default.url }}
-                        />
-                      </TouchableHighlight>
+                      <YouTube
+                        apiKey={YOUTUBE_API_KEY}
+                        videoId={this.props.navigation.videoId}
+                        play={this.state.isPlaying}
+                        hidden={false}
+                        onReady={() => { this.setState({ isReady: true }); }}
+                        onChangeState={(e) => { this.setState({ status: e.state }); }}
+                        onChangeQuality={(e) => { this.setState({ quality: e.quality }); }}
+                        onError={() => { this.setState({ isShowingError: true }); }}
+                        style={{ alignSelf: 'stretch', height: 200, backgroundColor: 'black', marginVertical: 20, marginHorizontal: 5 }}
+                      />
                     </Body>
                   </CardItem>
                 </Card>
@@ -83,9 +88,10 @@ export default class VideoPage extends Component {
   }
 }
 
-VideoPage.propTypes = {
+VideoDetailPage.propTypes = {
   navigation: PropTypes.shape({
     goBack: PropTypes.func,
     navigate: PropTypes.func,
+    videoId: PropTypes.string,
   }).isRequired,
 };

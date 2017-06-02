@@ -5,6 +5,7 @@ import { Image } from 'react-native';
 import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
+import VideoDetailPage from './VideoDetailPage';
 import AboutPage from './AboutPage';
 import lang from '../i18n/zh-tw';
 
@@ -14,6 +15,7 @@ function getArticlesPageByCategoryId(categoryId, title, query) {
       ArticlesPage: { screen: ArticlesPage },
       DetailPage: { screen: DetailPage },
       SearchPage: { screen: ArticlesPage },
+      VideoDetailPage: { screen: VideoDetailPage },
     }, {
       headerMode: 'none',
       initialRouteName: 'ArticlesPage',

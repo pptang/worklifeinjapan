@@ -15,7 +15,6 @@ function getArticlesPageByCategoryId(categoryId, title, query) {
       ArticlesPage: { screen: ArticlesPage },
       DetailPage: { screen: DetailPage },
       SearchPage: { screen: ArticlesPage },
-      VideoDetailPage: { screen: VideoDetailPage },
     }, {
       headerMode: 'none',
       initialRouteName: 'ArticlesPage',
@@ -62,7 +61,16 @@ const MainPage = ({ categories }) => {
     },
   });
   routeConfigs['Youtube 影片'] = {
-    screen: VideoPage,
+    screen: StackNavigator(
+      {
+        VideoPage: { screen: VideoPage },
+        VideoDetailPage: { screen: VideoDetailPage },
+      }, {
+        headerMode: 'none',
+        initialRouteName: 'VideoPage',
+        initialRouteParams: {
+        },
+      }),
   };
   routeConfigs['關於我們'] = {
     screen: AboutPage,

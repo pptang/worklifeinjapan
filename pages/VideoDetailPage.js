@@ -71,7 +71,7 @@ export default class VideoDetailPage extends Component {
                   onReady={() => { this.setState({ isReady: true }); }}
                   onChangeState={(e) => { this.setState({ status: e.state }); }}
                   onChangeQuality={(e) => { this.setState({ quality: e.quality }); }}
-                  onError={(e) => { 
+                  onError={(e) => {
                     console.log(e);
                     this.setState({ isShowingError: true });
                   }}

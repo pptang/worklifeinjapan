@@ -65,7 +65,12 @@ export default class VideoPage extends Component {
                   </CardItem>
                   <CardItem content>
                     <Body>
-                      <TouchableHighlight onPress={() => this.props.navigation.navigate('YoutubeDetailPage', { videoId: video.snippet.videoId, navigation: this.props.navigation, goback: true })}>
+                      <TouchableHighlight
+                        onPress={() => {
+                          console.log(this.props.navigation);
+                          this.props.navigation.navigate('VideoDetailPage', { video });
+                        }}
+                      >
                         <Image
                           style={{ width: '100%', height: 200 }}
                           source={{ uri: video.snippet.thumbnails.high.url ? video.snippet.thumbnails.high.url : video.snippet.thumbnails.default.url }}

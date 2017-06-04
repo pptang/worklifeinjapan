@@ -4,7 +4,7 @@ import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
 import { CHANNEL_VIDEO_LIST } from '../utils/constants';
-import { Image, TouchableHighlight, Modal, WebView } from 'react-native';
+import { Image, TouchableWithoutFeedback, Modal, WebView } from 'react-native';
 
 export default class VideoPage extends Component {
   constructor(props) {
@@ -74,20 +74,24 @@ export default class VideoPage extends Component {
                   <CardItem>
                     <Left>
                       <Body>
-                        <H3>{video.snippet.title}</H3>
+                        <TouchableWithoutFeedback
+                          onPress={() => this.setState({ modalVisible: true, focusVideo: video })}
+                        >
+                          <H3>{video.snippet.title}</H3>
+                        </TouchableWithoutFeedback>
                       </Body>
                     </Left>
                   </CardItem>
                   <CardItem content>
                     <Body>
-                      <TouchableHighlight
+                      <TouchableWithoutFeedback
                         onPress={() => this.setState({ modalVisible: true, focusVideo: video })}
                       >
                         <Image
                           style={{ width: '100%', height: 200 }}
                           source={{ uri: video.snippet.thumbnails.high.url ? video.snippet.thumbnails.high.url : video.snippet.thumbnails.default.url }}
                         />
-                      </TouchableHighlight>
+                      </TouchableWithoutFeedback>
                     </Body>
                   </CardItem>
                 </Card>

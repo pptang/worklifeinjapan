@@ -4,7 +4,7 @@ import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
 import { CHANNEL_VIDEO_LIST } from '../utils/constants';
-import { Image, TouchableHighlight } from 'react-native';
+import { Image, TouchableHighlight, Modal, WebView } from 'react-native';
 
 export default class VideoPage extends Component {
   constructor(props) {
@@ -17,6 +17,8 @@ export default class VideoPage extends Component {
       error: null,
       isPlaying: false,
       isShowingError: false,
+      modalVisible: false,
+      focusVideo: null,
     };
   }
 
@@ -44,6 +46,19 @@ export default class VideoPage extends Component {
         {
           this.state.isShowingError && <ErrorBar close={closeErrorBar} />
         }
+        { this.state.focusVideo != null ? <Modal
+          animationType={'slide'}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => { this.setState({ modalVisible: false }); }}
+        >
+          <WebView
+            style={{ flex: 1 }}
+            javaScriptEnabled
+            source={{ uri: `https://www.youtube.com/embed/${this.state.focusVideo.id.videoId}?rel=0&autoplay=0&showinfo=0&controls=1` }}
+          />
+
+        </Modal> : null }
         <Content>
           {
             this.state.videos.length ?
@@ -66,10 +81,7 @@ export default class VideoPage extends Component {
                   <CardItem content>
                     <Body>
                       <TouchableHighlight
-                        onPress={() => {
-                          console.log(this.props.navigation);
-                          this.props.navigation.navigate('VideoDetailPage', { video });
-                        }}
+                        onPress={() => this.setState({ modalVisible: true, focusVideo: video })}
                       >
                         <Image
                           style={{ width: '100%', height: 200 }}

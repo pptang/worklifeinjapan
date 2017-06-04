@@ -41,7 +41,7 @@ export default class VideoDetailPage extends Component {
     const video = this.props.navigation.state.params.video;
     return (
       <Container>
-        <NavBar navigation={this.props.navigation} title="Youtube 影片" goBack={false} />
+        <NavBar navigation={this.props.navigation} title={video.snippet.title} goBack />
         {
           this.state.isShowingError && <ErrorBar close={closeErrorBar} />
         }
@@ -67,6 +67,7 @@ export default class VideoDetailPage extends Component {
                   apiKey={YOUTUBE_API_KEY}
                   videoId={video.id.videoId}
                   play={this.state.isPlaying}
+                  fullscreen
                   hidden={false}
                   onReady={() => { this.setState({ isReady: true }); }}
                   onChangeState={(e) => { this.setState({ status: e.state }); }}

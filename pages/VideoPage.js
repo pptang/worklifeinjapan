@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import YouTube from 'react-native-youtube';
 import { Container, Content, Card, CardItem, Body, Left, H3, Text } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
-import { CHANNEL_VIDEO_LIST, YOUTUBE_API_KEY } from '../utils/constants';
+import { CHANNEL_VIDEO_LIST } from '../utils/constants';
+import { Image, TouchableWithoutFeedback, Modal, WebView } from 'react-native';
 
 export default class VideoPage extends Component {
   constructor(props) {
@@ -17,6 +17,8 @@ export default class VideoPage extends Component {
       error: null,
       isPlaying: false,
       isShowingError: false,
+      modalVisible: false,
+      focusVideo: null,
     };
   }
 
@@ -24,6 +26,7 @@ export default class VideoPage extends Component {
     fetch(CHANNEL_VIDEO_LIST)
       .then(res => res.json())
       .then((res) => {
+        console.log(res);
         if (res.items) {
           this.setState({
             videos: res.items,
@@ -43,6 +46,19 @@ export default class VideoPage extends Component {
         {
           this.state.isShowingError && <ErrorBar close={closeErrorBar} />
         }
+        { this.state.focusVideo != null ? <Modal
+          animationType={'slide'}
+          transparent={false}
+          visible={this.state.modalVisible}
+          onRequestClose={() => { this.setState({ modalVisible: false }); }}
+        >
+          <WebView
+            style={{ flex: 1 }}
+            javaScriptEnabled
+            source={{ uri: `https://www.youtube.com/embed/${this.state.focusVideo.id.videoId}?rel=0&autoplay=0&showinfo=0&controls=1` }}
+          />
+
+        </Modal> : null }
         <Content>
           {
             this.state.videos.length ?
@@ -58,23 +74,24 @@ export default class VideoPage extends Component {
                   <CardItem>
                     <Left>
                       <Body>
-                        <H3>{video.snippet.title}</H3>
+                        <TouchableWithoutFeedback
+                          onPress={() => this.setState({ modalVisible: true, focusVideo: video })}
+                        >
+                          <H3>{video.snippet.title}</H3>
+                        </TouchableWithoutFeedback>
                       </Body>
                     </Left>
                   </CardItem>
                   <CardItem content>
                     <Body>
-                      <YouTube
-                        apiKey={YOUTUBE_API_KEY}
-                        videoId={video.id.videoId}
-                        play={this.state.isPlaying}
-                        hidden={false}
-                        onReady={() => { this.setState({ isReady: true }); }}
-                        onChangeState={(e) => { this.setState({ status: e.state }); }}
-                        onChangeQuality={(e) => { this.setState({ quality: e.quality }); }}
-                        onError={() => { this.setState({ isShowingError: true }); }}
-                        style={{ alignSelf: 'stretch', height: 200, backgroundColor: 'black', marginVertical: 20, marginHorizontal: 5 }}
-                      />
+                      <TouchableWithoutFeedback
+                        onPress={() => this.setState({ modalVisible: true, focusVideo: video })}
+                      >
+                        <Image
+                          style={{ width: '100%', height: 200 }}
+                          source={{ uri: video.snippet.thumbnails.high.url ? video.snippet.thumbnails.high.url : video.snippet.thumbnails.default.url }}
+                        />
+                      </TouchableWithoutFeedback>
                     </Body>
                   </CardItem>
                 </Card>

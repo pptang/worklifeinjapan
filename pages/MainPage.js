@@ -5,7 +5,6 @@ import { Image } from 'react-native';
 import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
-import VideoDetailPage from './VideoDetailPage';
 import AboutPage from './AboutPage';
 import lang from '../i18n/zh-tw';
 
@@ -61,16 +60,7 @@ const MainPage = ({ categories }) => {
     },
   });
   routeConfigs['Youtube 影片'] = {
-    screen: StackNavigator(
-      {
-        VideoPage: { screen: VideoPage },
-        VideoDetailPage: { screen: VideoDetailPage },
-      }, {
-        headerMode: 'none',
-        initialRouteName: 'VideoPage',
-        initialRouteParams: {
-        },
-      }),
+    screen: VideoPage,
   };
   routeConfigs['關於我們'] = {
     screen: AboutPage,

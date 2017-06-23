@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import { Container, Content, Card, CardItem, Body, Left, H3, Text } from 'native-base';
+import { Container, Content, Card, CardItem, Body, Left, H3, Text, Icon, Button } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
 import { CHANNEL_VIDEO_LIST } from '../utils/constants';
-import { Image, TouchableWithoutFeedback, Modal, WebView } from 'react-native';
+import { Image, TouchableWithoutFeedback, Modal, WebView, View } from 'react-native';
 
 export default class VideoPage extends Component {
   constructor(props) {
@@ -52,6 +52,11 @@ export default class VideoPage extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => { this.setState({ modalVisible: false }); }}
         >
+          <View>
+            <Button transparent onPress={() => this.setState({ modalVisible: false }) }>
+              <Icon name="arrow-back" style={{ color: '#b51d22' }} />
+            </Button>
+          </View>
           <WebView
             style={{ flex: 1 }}
             javaScriptEnabled

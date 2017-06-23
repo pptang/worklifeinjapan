@@ -9,7 +9,8 @@ export default function AboutPage({ navigation }) {
       <NavBar navigation={navigation} title="關於我們" />
       <WebView
         source={{ uri: 'http://www.worklifeinjapan.net/home/about-us' }}
-        style={{ zIndex: -1, position: 'absolute', top: -250, left: 0, bottom: 0, right: 0 }}
+        injectedJavaScript={'document.querySelector(\'.page_header\').style.display = \'none\';'}
+        startInLoadingState
       />
     </Container>
   );

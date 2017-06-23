@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
-import { Share, TextInput } from 'react-native';
+import { Share, TextInput, Platform } from 'react-native';
 import { SHARE_CANCELL, SHARE_SUCCESS, SHARE_FAIL, GET_POST } from '../utils/constants';
-import FCM, { FCMEvent } from 'react-native-fcm';
+import FCM, { FCMEvent, RemoteNotificationResult, WillPresentNotificationResult, NotificationType } from 'react-native-fcm';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class Navbar extends Component {
@@ -87,27 +87,33 @@ export default class Navbar extends Component {
       }
       // await someAsyncCall();
 
-      // if (Platform.OS === 'ios') {
-      //   //optional
-      //   //iOS requires developers to call completionHandler to end notification process. If you do not call it your background remote notifications could be throttled, to read more about it see the above documentation link.
-      //   //This library handles it for you automatically with default behavior (for remote notification, finish with NoData; for WillPresent, finish depend on "show_in_foreground"). However if you want to return different result, follow the following code to override
-      //   //notif._notificationType is available for iOS platfrom
-      //   switch (notif._notificationType) {
-      //     case NotificationType.Remote:
-      //       notif.finish(RemoteNotificationResult.NewData) //other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
-      //       break;
-      //     case NotificationType.NotificationResponse:
-      //       notif.finish();
-      //       break;
-      //     case NotificationType.WillPresent:
-      //       notif.finish(WillPresentNotificationResult.All) //other types available: WillPresentNotificationResult.None
-      //       break;
-      //   }
-      // }
+      if (Platform.OS === 'ios') {
+        // optional
+        // iOS requires developers to call completionHandler to end notification process. If you do not call it your background remote notifications could be throttled, to read more about it see the above documentation link.
+        // This library handles it for you automatically with default behavior (for remote notification, finish with NoData; for WillPresent, finish depend on "show_in_foreground"). However if you want to return different result, follow the following code to override
+        // notif._notificationType is available for iOS platfrom
+        switch (notif._notificationType) {
+          case NotificationType.Remote:
+            notif.finish(RemoteNotificationResult.NewData); // other types available: RemoteNotificationResult.NewData, RemoteNotificationResult.ResultFailed
+            break;
+          case NotificationType.NotificationResponse:
+            notif.finish();
+            break;
+          case NotificationType.WillPresent:
+            notif.finish(WillPresentNotificationResult.All); // other types available: WillPresentNotificationResult.None
+            break;
+          default:
+            break;
+        }
+      }
     });
     this.refreshTokenListener = FCM.on(FCMEvent.RefreshToken, (token) => {
       console.log('refresh::', token);
       // fcm token may not be available on first load, catch it here
+      if (token) {
+        FCM.subscribeToTopic('new-article');
+        FCM.subscribeToTopic('new-video');
+      }
     });
   }
 

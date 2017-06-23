@@ -53,7 +53,7 @@ export default class VideoPage extends Component {
           onRequestClose={() => { this.setState({ modalVisible: false }); }}
         >
           <View>
-            <Button transparent onPress={() => this.setState({ modalVisible: false }) }>
+            <Button transparent onPress={() => this.setState({ modalVisible: false })}>
               <Icon name="arrow-back" style={{ color: '#b51d22' }} />
             </Button>
           </View>

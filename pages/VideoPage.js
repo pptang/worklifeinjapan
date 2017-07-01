@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Container, Content, Card, CardItem, Body, Left, H3, Text, Icon, Button } from 'native-base';
+import { Container, Content, Card, CardItem, Body, Left, H3, Text, Icon, Button, Spinner } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
@@ -19,17 +19,28 @@ export default class VideoPage extends Component {
       isShowingError: false,
       modalVisible: false,
       focusVideo: null,
+      hasMoreVideos: true,
+      pageToken: '',
     };
   }
 
   componentDidMount() {
-    fetch(CHANNEL_VIDEO_LIST)
+    this.isLoading = true;
+    this.fetchVideos();
+  }
+
+  fetchVideos() {
+    this.isLoading = true;
+    const url = `${CHANNEL_VIDEO_LIST}&pageToken=${this.state.pageToken}`;
+    fetch(url)
       .then(res => res.json())
       .then((res) => {
-        console.log(res);
+        this.isLoading = false;
         if (res.items) {
           this.setState({
             videos: res.items,
+            hasMoreVideos: !!res.nextPageToken,
+            pageToken: res.nextPageToken ? res.nextPageToken : '',
           });
         }
       })
@@ -46,7 +57,7 @@ export default class VideoPage extends Component {
         {
           this.state.isShowingError && <ErrorBar close={closeErrorBar} />
         }
-        { this.state.focusVideo != null ? <Modal
+        {this.state.focusVideo != null ? <Modal
           animationType={'slide'}
           transparent={false}
           visible={this.state.modalVisible}
@@ -63,8 +74,14 @@ export default class VideoPage extends Component {
             source={{ uri: `https://www.youtube.com/embed/${this.state.focusVideo.id.videoId}?rel=0&autoplay=0&showinfo=0&controls=1` }}
           />
 
-        </Modal> : null }
-        <Content>
+        </Modal> : null}
+        <Content
+          onScroll={(event) => {
+            if (this.state.hasMoreVideos && !this.isLoading && event.nativeEvent.contentOffset.y + 650 > this.spinnerOffsetTop) {
+              this.fetchVideos();
+            }
+          }}
+        >
           {
             this.state.videos.length ?
               this.state.videos.map(video => (
@@ -102,6 +119,19 @@ export default class VideoPage extends Component {
                 </Card>
               ))
               : null // TODO: should add splash screen
+          }
+          {
+            this.state.hasMoreVideos && this.state.videos.length >= 0 ?
+              <View
+                ref={(ref) => { this.view = ref; }}
+                onLayout={({ nativeEvent }) => {
+                  this.spinnerOffsetTop = nativeEvent.layout.y;
+                }}
+              >
+                <Spinner color="red" />
+              </View>
+              :
+              null
           }
         </Content>
       </Container>

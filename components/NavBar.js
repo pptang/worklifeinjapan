@@ -9,7 +9,7 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props);
     this._shareText = this._shareText.bind(this);
-    // this._showResult = this._showResult.bind(this);
+    this._showResult = this._showResult.bind(this);
     this.state = {
       isSearching: false,
       searchText: '',
@@ -49,7 +49,6 @@ export default class Navbar extends Component {
         alert(SHARE_SUCCESS);
         this.setState({ result: `shared with an activityType: ${result.activityType}` });
       } else {
-        // alert(SHARE_SUCCESS + 'test');
         this.setState({ result: 'shared' });
       }
     } else if (result.action === Share.dismissedAction) {

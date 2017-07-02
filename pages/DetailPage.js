@@ -14,7 +14,18 @@ export default function DetailPage({ navigation }) {
       <NavBar navigation={navigation} title={post.title.rendered} goBack showShare shareContent={shareContent} />
       <WebView
         source={{ uri: post.guid.rendered }}
-        injectedJavaScript={'document.querySelector(\'.page_header\').style.display = \'none\';'}
+        // javaScriptEnabled={false}
+        injectedJavaScript={'document.querySelector(\'.page_header\').style.display = \'none\';\
+        var layout = document.getElementById(\'layout\');\
+        layout.parentNode.removeChild(layout);\
+        var signup = document.getElementById(\'mc_embed_signup_scroll\');\
+        signup.parentNode.removeChild(signup);\
+        var related = document.getElementById(\'wp_related_posts_widget\');\
+        related.parentNode.removeChild(related);\
+        setTimeout(function() {\
+          document.querySelector(\'.sumome-share-client-wrapper\').style.display = \'none\';\
+          document.querySelector(\'.sumome-scrollbox-popup\').style.display = \'none\';\
+        }, 2000);'}
       />
     </Container>
   );

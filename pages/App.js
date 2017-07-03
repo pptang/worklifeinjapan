@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MainPage from './MainPage';
 import ErrorBar from '../components/ErrorBar';
 import { CATEGORY_LIST } from '../utils/constants';
+import { View, Image, Text } from 'react-native';
 
 export default class App extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class App extends Component {
       categories: [],
       isShowingError: false,
     };
+    this.closeErrorBar = this.closeErrorBar.bind(this);
   }
   componentDidMount() {
     fetch(CATEGORY_LIST)
@@ -22,16 +24,31 @@ export default class App extends Component {
       .catch(() => this.setState({ isShowingError: true }));
   }
 
-  render() {
-    const closeErrorBar = () => {
-      this.setState({ isShowingError: false });
-    };
+  closeErrorBar() {
+    this.setState({ isShowingError: false });
+  }
 
+  render() {
     if (this.state.categories.length) {
       return (
         <MainPage categories={this.state.categories} />
       );
+    } else if (this.state.isShowingError) {
+      return <ErrorBar close={this.closeErrorBar} />;
     }
-    return this.state.isShowingError && <ErrorBar close={closeErrorBar} />; // TODO: Splash Screen
+
+    const splashScreen = (
+      <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
+        <Image
+          style={{ width: 100, height: 100 }}
+          source={require('../img/logo/work-in-japan.png')}
+        />
+        <Text style={{ fontFamily: 'Cochin', fontSize: 25, fontWeight: 'bold' }}>
+          WorkLifeInJapan
+        </Text>
+      </View>
+    );
+
+    return splashScreen;
   }
 }

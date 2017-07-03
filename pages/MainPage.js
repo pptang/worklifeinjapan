@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import { Container, Content } from 'native-base';
-import { Image } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import ArticlesPage from './ArticlesPage';
 import DetailPage from './DetailPage';
 import VideoPage from './VideoPage';
@@ -33,10 +33,13 @@ const DrawerNavigatorConfig = {
   contentComponent: props => (
     <Container>
       <Content>
-        <Image
-          style={{ width: 198, height: 56, marginTop: 20 }}
-          source={require('../img/logo/wij.png')}
-        />
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 25, marginLeft: 10 }}>
+          <Image
+            style={{ width: 50, height: 50 }}
+            source={require('../img/logo/work-in-japan.png')}
+          />
+          <Text style={{ fontFamily: 'Cochin', fontSize: 15 }}>WorkLifeInJapan</Text>
+        </View>
         <DrawerItems {...props} />
       </Content>
     </Container>

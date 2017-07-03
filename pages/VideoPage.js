@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Container, Content, Card, CardItem, Body, Left, H3, Text, Icon, Button, Spinner } from 'native-base';
+import { Container, Content, Card, CardItem, Body, Left, H3, Text, Icon, Button, Spinner, Header } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
@@ -63,11 +63,13 @@ export default class VideoPage extends Component {
           visible={this.state.modalVisible}
           onRequestClose={() => { this.setState({ modalVisible: false }); }}
         >
-          <View>
-            <Button transparent onPress={() => this.setState({ modalVisible: false })}>
-              <Icon name="arrow-back" style={{ color: '#b51d22' }} />
-            </Button>
-          </View>
+          <Header style={{ backgroundColor: '#fff' }} androidStatusBarColor="#b51d22">
+            <Left style={{ flex: 1 }}>
+              <Button transparent onPress={() => this.setState({ modalVisible: false })}>
+                <Icon name="arrow-back" style={{ color: '#b51d22' }} />
+              </Button>
+            </Left>
+          </Header>
           <WebView
             style={{ flex: 1 }}
             javaScriptEnabled

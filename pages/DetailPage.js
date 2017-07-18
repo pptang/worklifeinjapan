@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Container } from 'native-base';
+import { Container, Spinner } from 'native-base';
 import { WebView } from 'react-native';
 import NavBar from '../components/NavBar';
 
@@ -21,6 +21,8 @@ export default function DetailPage({ navigation }) {
           document.querySelector('.sumome-share-client-wrapper').style.display = 'none';
           document.querySelector('.single_tags').style.display = 'none';
         `}
+        startInLoadingState
+        renderLoading={() => <Spinner color="red" />}
       />
     </Container>
   );

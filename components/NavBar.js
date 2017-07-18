@@ -179,7 +179,7 @@ export default class Navbar extends Component {
 
         </Right>
         {
-          this.state.isHandlingPushNotification ? <Spinner visible={this.state.isHandlingPushNotification} textContent={'Loading...'} textStyle={{ color: '#b51d22' }} color="#b51d22" /> : null
+          this.state.isHandlingPushNotification ? <Spinner visible={this.state.isHandlingPushNotification} textContent={'讀取文章中...'} textStyle={{ color: '#b51d22' }} color="#b51d22" /> : null
         }
       </Header>
     );

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Container, Body, Content, Left, Right, Text, Button, Card, CardItem, Spinner, H3, Thumbnail } from 'native-base';
-import { View } from 'react-native';
+import { View, WebView } from 'react-native';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
@@ -97,36 +97,36 @@ export default class ArticlesPage extends Component {
             }
           }}
         >
-          { this.state.hasSearchResult ?
-              this.state.posts.map(post => (
-                <Card key={post.id} style={{ flex: 0 }}>
-                  <CardItem header>
-                    <Left>
-                      <Body>
-                        <Text note>{`${Moment(post.date).format('YYYY-MM-DD')} / By ${post._embedded.author[0].name}`}</Text>
-                      </Body>
-                    </Left>
-                  </CardItem>
-                  <CardItem>
-                    <Left>
-                      <Body>
-                        <H3>{post.title.rendered}</H3>
-                      </Body>
-                    </Left>
-                    <Thumbnail
-                      style={{ marginLeft: 10 }}
-                      size={150}
-                      square
-                      source={post.featured_media ?
-                      {
-                        uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url,
+          {this.state.hasSearchResult ?
+            this.state.posts.map(post => (
+              <Card key={post.id} style={{ flex: 0 }}>
+                <CardItem header>
+                  <Left>
+                    <Body>
+                      <Text note>{`${Moment(post.date).format('YYYY-MM-DD')} / By ${post._embedded.author[0].name}`}</Text>
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem>
+                  <Left>
+                    <Body>
+                      <H3>{post.title.rendered}</H3>
+                    </Body>
+                  </Left>
+                  <Thumbnail
+                    style={{ marginLeft: 10 }}
+                    size={150}
+                    square
+                    source={post.featured_media ?
+                    {
+                      uri: post._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url,
 
-                      }
+                    }
                       : require('../img/logo/work-in-japan.png')
                     }
-                    />
-                  </CardItem>
-                  {/* <CardItem cardBody>
+                  />
+                </CardItem>
+                {/* <CardItem cardBody>
                     <Image
                       style={{ width: 400, height: 200 }}
                       source={{
@@ -135,38 +135,32 @@ export default class ArticlesPage extends Component {
                           : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url
                       }} />
                   </CardItem>*/}
-                  <CardItem content>
-                    <Left>
-                      <Body>
-                        <Text>
-                          {
-                          post.my_excerpt
-                            .replace(/&nbsp;/g, '')
-                            .substr(0, 100)
-                        }......
-                    </Text>
-                      </Body>
-                    </Left>
-                  </CardItem>
-                  <CardItem footer>
-                    <Right>
-                      <Button danger bordered rounded onPress={() => this.props.navigation.navigate('DetailPage', { post })}>
-                        <Text>{lang.continue_reading}</Text>
-                      </Button>
-                    </Right>
-                  </CardItem>
-                </Card>
-            ))
-            :
-              <Card transparent key="no-result" style={{ flex: 0 }}>
                 <CardItem content>
-                  <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Text>
-                      搜尋不到結果
-                    </Text>
-                  </Body>
+                  <Left>
+                    <Body>
+                      <WebView source={{ html: post.excerpt.rendered }} style={{ height: 75 }} scrollEnabled={false} />
+                    </Body>
+                  </Left>
+                </CardItem>
+                <CardItem footer>
+                  <Right>
+                    <Button danger bordered rounded onPress={() => this.props.navigation.navigate('DetailPage', { post })}>
+                      <Text>{lang.continue_reading}</Text>
+                    </Button>
+                  </Right>
                 </CardItem>
               </Card>
+            ))
+            :
+            <Card transparent key="no-result" style={{ flex: 0 }}>
+              <CardItem content>
+                <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
+                  <Text>
+                    搜尋不到結果
+                    </Text>
+                </Body>
+              </CardItem>
+            </Card>
           }
           {
             this.state.hasMoreArticles && this.state.posts.length >= 0 ?

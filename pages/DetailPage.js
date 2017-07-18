@@ -1,31 +1,44 @@
-import React, { PropTypes } from 'react';
-import { Container, Spinner } from 'native-base';
+import React, { PropTypes, Component } from 'react';
+import { Container } from 'native-base';
 import { WebView } from 'react-native';
 import NavBar from '../components/NavBar';
+import Spinner from 'react-native-loading-spinner-overlay';
 
-export default function DetailPage({ navigation }) {
-  const post = navigation.state.params.post;
-  const shareContent = {
-    title: post.title.rendered,
-    message: post.link,
-  };
-  return (
-    <Container backgroundColor="white">
-      <NavBar navigation={navigation} title={post.title.rendered} goBack showShare shareContent={shareContent} />
-      <WebView
-        source={{ uri: post.guid.rendered }}
-        injectedJavaScript={`
+export default class DetailPage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showSpinner: false,
+    };
+  }
+  render() {
+    const post = this.props.navigation.state.params.post;
+    const shareContent = {
+      title: post.title.rendered,
+      message: post.link,
+    };
+    return (
+      <Container backgroundColor="white">
+        <NavBar navigation={this.props.navigation} title={post.title.rendered} goBack showShare shareContent={shareContent} />
+        <WebView
+          source={{ uri: post.guid.rendered }}
+          injectedJavaScript={`
           document.querySelector('.page_header').style.display = 'none';
           document.querySelector('.column2').style.display = 'none';
           document.querySelector('#disqus_thread').style.display = 'none';
           document.querySelector('.sumome-share-client-wrapper').style.display = 'none';
           document.querySelector('.single_tags').style.display = 'none';
         `}
-        startInLoadingState
-        renderLoading={() => <Spinner color="red" />}
-      />
-    </Container>
-  );
+          onLoadStart={() => this.setState({ showSpinner: true })}
+          onLoadEnd={() => setTimeout(() => this.setState({ showSpinner: false }), 500)}
+        />
+        {
+          this.state.showSpinner ? <Spinner visible={this.state.showSpinner} overlayColor={'rgba(255, 255, 255, 1)'} textContent={'讀取文章中...'} textStyle={{ color: '#b51d22' }} color="#b51d22" /> : null
+        }
+      </Container>
+    );
+  }
+
 }
 
 DetailPage.propTypes = {

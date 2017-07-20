@@ -18,15 +18,21 @@ export default class ArticlesPage extends Component {
       isShowingError: false,
       hasSearchResult: true,
     };
+    this.reload = this.reload.bind(this);
   }
   componentDidMount() {
-    this.isLoading = true;
-    this.page = 1;
-    this.fetchArticles(this.props.navigation.state.params.categoryId, this.props.navigation.state.params.query);
+    this.reload();
   }
   // componentWillReceiveProps(props) {
   //   this.fetchArticles(props.navigation.state.params.categoryId);
   // }
+
+  reload() {
+    this.isLoading = true;
+    this.page = 1;
+    this.fetchArticles(this.props.navigation.state.params.categoryId, this.props.navigation.state.params.query);
+  }
+
   fetchArticles(categoryId, query) {
     if (this.totalPages && this.page < this.totalPages) {
       this.page = this.page + 1;
@@ -55,26 +61,27 @@ export default class ArticlesPage extends Component {
         if (res.length > 0) {
           this.setState(prevState => ({
             posts: [...prevState.posts, ...res],
+            isShowingError: false
           }));
         } else {
           this.setState({
             hasMoreArticles: false,
             hasSearchResult: false,
+            isShowingError: false
           });
         }
       })
-      .catch(() => this.setState({ isShowingError: true }));
+      .catch(() => {
+        this.setState({ isShowingError: true })
+      });
   }
 
   render() {
-    const closeErrorBar = () => {
-      this.setState({ isShowingError: false });
-    };
     return (
       <Container>
         <NavBar navigation={this.props.navigation} title={this.props.navigation.state.params.title} goBack={!!this.props.navigation.state.params.query} />
         {
-          this.state.isShowingError && <ErrorBar close={closeErrorBar} />
+          this.state.isShowingError && <ErrorBar close={this.reload} />
         }
         {/* <Header style={{ backgroundColor: '#fff' }}>
           <Left>
@@ -163,7 +170,7 @@ export default class ArticlesPage extends Component {
             </Card>
           }
           {
-            this.state.hasMoreArticles && this.state.posts.length >= 0 ?
+            !this.state.isShowingError && this.state.hasMoreArticles && this.state.posts.length >= 0 ?
               <View
                 ref={(ref) => { this.view = ref; }}
                 onLayout={({ nativeEvent }) => {

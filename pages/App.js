@@ -3,6 +3,7 @@ import MainPage from './MainPage';
 import ErrorBar from '../components/ErrorBar';
 import { CATEGORY_LIST } from '../utils/constants';
 import { View, Image, Text } from 'react-native';
+import { Container, Header, Body, Title } from 'native-base';
 
 export default class App extends Component {
   constructor(props) {
@@ -23,7 +24,7 @@ export default class App extends Component {
       .then((res) => {
         this.setState({
           categories: res.filter(category => category.count),
-          isShowingError: false
+          isShowingError: false,
         });
       })
       .catch(() => this.setState({ isShowingError: true }));
@@ -35,7 +36,16 @@ export default class App extends Component {
         <MainPage categories={this.state.categories} />
       );
     } else if (this.state.isShowingError) {
-      return <ErrorBar close={this.reload} />;
+      return (
+        <Container>
+          <Header style={{ backgroundColor: '#fff' }} androidStatusBarColor="#b51d22">
+            <Body style={{ flex: 4 }}>
+              <Title style={{ color: '#b51d22' }}>WorkLifeInJapan</Title>
+            </Body>
+          </Header>
+          <ErrorBar close={this.reload} />
+        </Container>
+      );
     }
 
     const splashScreen = (

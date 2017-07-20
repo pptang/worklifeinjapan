@@ -41,13 +41,13 @@ export default class VideoPage extends Component {
             videos: res.items,
             hasMoreVideos: !!res.nextPageToken,
             pageToken: res.nextPageToken ? res.nextPageToken : '',
-            isShowingError: false
+            isShowingError: false,
           });
         }
       })
       .catch(() => {
         this.setState({ isShowingError: true });
-      } );
+      });
   }
 
   reload() {

@@ -61,18 +61,18 @@ export default class ArticlesPage extends Component {
         if (res.length > 0) {
           this.setState(prevState => ({
             posts: [...prevState.posts, ...res],
-            isShowingError: false
+            isShowingError: false,
           }));
         } else {
           this.setState({
             hasMoreArticles: false,
             hasSearchResult: false,
-            isShowingError: false
+            isShowingError: false,
           });
         }
       })
       .catch(() => {
-        this.setState({ isShowingError: true })
+        this.setState({ isShowingError: true });
       });
   }
 

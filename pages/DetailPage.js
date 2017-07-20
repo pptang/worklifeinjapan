@@ -26,7 +26,9 @@ export default class DetailPage extends Component {
           document.querySelector('.page_header').style.display = 'none';
           document.querySelector('.column2').style.display = 'none';
           document.querySelector('#disqus_thread').style.display = 'none';
-          document.querySelector('.sumome-share-client-wrapper').style.display = 'none';
+          setTimeout(function() {
+            document.querySelector('.sumome-share-client-wrapper').style.display = 'none';
+          }, 1000);
           document.querySelector('.single_tags').style.display = 'none';
         `}
           onLoadStart={() => this.setState({ showSpinner: true })}

@@ -22,11 +22,11 @@ export default class VideoPage extends Component {
       hasMoreVideos: true,
       pageToken: '',
     };
+    this.reload = this.reload.bind(this);
   }
 
   componentDidMount() {
-    this.isLoading = true;
-    this.fetchVideos();
+    this.reload();
   }
 
   fetchVideos() {
@@ -41,21 +41,26 @@ export default class VideoPage extends Component {
             videos: res.items,
             hasMoreVideos: !!res.nextPageToken,
             pageToken: res.nextPageToken ? res.nextPageToken : '',
+            isShowingError: false
           });
         }
       })
-      .catch(() => this.setState({ isShowingError: true }));
+      .catch(() => {
+        this.setState({ isShowingError: true });
+      } );
+  }
+
+  reload() {
+    this.isLoading = true;
+    this.fetchVideos();
   }
 
   render() {
-    const closeErrorBar = () => {
-      this.setState({ isShowingError: false });
-    };
     return (
       <Container>
         <NavBar navigation={this.props.navigation} title="Youtube 影片" goBack={false} />
         {
-          this.state.isShowingError && <ErrorBar close={closeErrorBar} />
+          this.state.isShowingError && <ErrorBar close={this.reload} />
         }
         {this.state.focusVideo != null ? <Modal
           animationType={'slide'}
@@ -123,7 +128,7 @@ export default class VideoPage extends Component {
               : null // TODO: should add splash screen
           }
           {
-            this.state.hasMoreVideos && this.state.videos.length >= 0 ?
+            !this.state.isShowingError && this.state.hasMoreVideos && this.state.videos.length >= 0 ?
               <View
                 ref={(ref) => { this.view = ref; }}
                 onLayout={({ nativeEvent }) => {

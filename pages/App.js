@@ -11,21 +11,22 @@ export default class App extends Component {
       categories: [],
       isShowingError: false,
     };
-    this.closeErrorBar = this.closeErrorBar.bind(this);
+    this.reload = this.reload.bind(this);
   }
   componentDidMount() {
+    this.reload();
+  }
+
+  reload() {
     fetch(CATEGORY_LIST)
       .then(res => res.json())
       .then((res) => {
         this.setState({
           categories: res.filter(category => category.count),
+          isShowingError: false
         });
       })
       .catch(() => this.setState({ isShowingError: true }));
-  }
-
-  closeErrorBar() {
-    this.setState({ isShowingError: false });
   }
 
   render() {
@@ -34,7 +35,7 @@ export default class App extends Component {
         <MainPage categories={this.state.categories} />
       );
     } else if (this.state.isShowingError) {
-      return <ErrorBar close={this.closeErrorBar} />;
+      return <ErrorBar close={this.reload} />;
     }
 
     const splashScreen = (

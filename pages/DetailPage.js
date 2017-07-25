@@ -9,6 +9,7 @@ export default class DetailPage extends Component {
     super(props);
     this.state = {
       showSpinner: false,
+      isFirstLoad: true
     };
   }
   render() {
@@ -30,8 +31,13 @@ export default class DetailPage extends Component {
             document.querySelector('.sumome-share-client-wrapper').style.display = 'none';
           }, 1000);
           document.querySelector('.single_tags').style.display = 'none';
+          document.querySelector('.sumome-share-client-wrapper').style.display = 'none';
         `}
-          onLoadStart={() => this.setState({ showSpinner: true })}
+          onLoadStart={() => {
+            if (this.state.isFirstLoad) {
+              this.setState({ showSpinner: true,  isFirstLoad: false})
+            }
+          }}
           onLoadEnd={() => setTimeout(() => this.setState({ showSpinner: false }), 500)}
         />
         {

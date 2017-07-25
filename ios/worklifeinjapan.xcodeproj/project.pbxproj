@@ -25,7 +25,6 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		19023FFFE8B2C0680B7E7D79 /* libPods-worklifeinjapan-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B5ACBBAE264D58D83BD02517 /* libPods-worklifeinjapan-tvOS.a */; };
 		24AF09F6D3FD4176AFB76C4B /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 849DB6056A9142488FBE2427 /* rubicon-icon-font.ttf */; };
 		2B5D06AFF22741548CC40388 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAC6B88524C04D91B06144E6 /* EvilIcons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -314,7 +313,6 @@
 		212A68C43F724DF88F9D3580 /* Courier New.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Courier New.ttf"; path = "../node_modules/native-base/Fonts/Courier New.ttf"; sourceTree = "<group>"; };
 		229DD3F3B985489296FC3708 /* libRCTYouTube.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTYouTube.a; sourceTree = "<group>"; };
 		2300299B41D44006830FBD95 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		29060999A607F66126034A37 /* Pods-worklifeinjapan-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-worklifeinjapan-tvOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-worklifeinjapan-tvOS/Pods-worklifeinjapan-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		2C014E1ABA064193A9E70AA3 /* Comic Sans MS.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Comic Sans MS.ttf"; path = "../node_modules/native-base/Fonts/Comic Sans MS.ttf"; sourceTree = "<group>"; };
 		2CEC65831D42489094301353 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* worklifeinjapan-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "worklifeinjapan-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,7 +327,6 @@
 		5E0A644440884B66A69C0EB3 /* Rubik-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Black.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Black.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		66639B3E14FE4086B2F66B58 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../node_modules/native-base/Fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
-		6C350AE0BF25D2EFCA9ABB50 /* Pods-worklifeinjapan-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-worklifeinjapan-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-worklifeinjapan-tvOS/Pods-worklifeinjapan-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6F6AFB156C754BA08EDA3E47 /* Skia.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Skia.ttf; path = "../node_modules/native-base/Fonts/Skia.ttf"; sourceTree = "<group>"; };
 		7835DB5F55104512B8144EB9 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -409,7 +406,6 @@
 				2D02E4C61E0B4AEC006451C7 /* libRCTSettings-tvOS.a in Frameworks */,
 				2D02E4C71E0B4AEC006451C7 /* libRCTText-tvOS.a in Frameworks */,
 				2D02E4C81E0B4AEC006451C7 /* libRCTWebSocket-tvOS.a in Frameworks */,
-				19023FFFE8B2C0680B7E7D79 /* libPods-worklifeinjapan-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,8 +675,6 @@
 			children = (
 				FFA42CE7C66D777E2D7393D4 /* Pods-worklifeinjapan.debug.xcconfig */,
 				134426693B287CB8A4F88BF0 /* Pods-worklifeinjapan.release.xcconfig */,
-				6C350AE0BF25D2EFCA9ABB50 /* Pods-worklifeinjapan-tvOS.debug.xcconfig */,
-				29060999A607F66126034A37 /* Pods-worklifeinjapan-tvOS.release.xcconfig */,
 				C88828A94373382A72BD2C17 /* Pods-worklifeinjapan-tvOSTests.debug.xcconfig */,
 				3A442E9FAC34C0DA7D7DA07A /* Pods-worklifeinjapan-tvOSTests.release.xcconfig */,
 				C3800DEB28FF731FB411364D /* Pods-worklifeinjapanTests.debug.xcconfig */,
@@ -738,13 +732,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "worklifeinjapan-tvOS" */;
 			buildPhases = (
-				9859E5C0DF89744E9365771B /* [CP] Check Pods Manifest.lock */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
 				2D02E4791E0B4A5D006451C7 /* Resources */,
 				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
-				E5E61A6F5A51A3D9372C9FB9 /* [CP] Embed Pods Frameworks */,
-				DE1B28D93B1547A5389D080B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -790,9 +781,12 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = C4R59J42AY;
+						DevelopmentTeam = 394RSRJ2WV;
 						SystemCapabilities = {
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
 								enabled = 1;
 							};
 						};
@@ -1219,21 +1213,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-worklifeinjapanTests/Pods-worklifeinjapanTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9859E5C0DF89744E9365771B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		A998994003A4016C75147BA1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1279,21 +1258,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-worklifeinjapan/Pods-worklifeinjapan-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DE1B28D93B1547A5389D080B /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-worklifeinjapan-tvOS/Pods-worklifeinjapan-tvOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		E4F8F24A92F6AF37ED5EDE2F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1307,21 +1271,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-worklifeinjapan-tvOSTests/Pods-worklifeinjapan-tvOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E5E61A6F5A51A3D9372C9FB9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-worklifeinjapan-tvOS/Pods-worklifeinjapan-tvOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		ECC8FA22CFCD09B2154F4342 /* [CP] Embed Pods Frameworks */ = {
@@ -1486,7 +1435,7 @@
 				CODE_SIGN_ENTITLEMENTS = worklifeinjapan/worklifeinjapan.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = C4R59J42AY;
+				DEVELOPMENT_TEAM = 394RSRJ2WV;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"${PODS_ROOT}/Firebase/Core/Sources",
@@ -1511,7 +1460,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.worklifeinjapan;
+				PRODUCT_BUNDLE_IDENTIFIER = net.worklifeinjapan;
 				PRODUCT_NAME = worklifeinjapan;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1524,7 +1473,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = worklifeinjapan/worklifeinjapan.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = C4R59J42AY;
+				DEVELOPMENT_TEAM = 394RSRJ2WV;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"${PODS_ROOT}/Firebase/Core/Sources",
@@ -1549,7 +1498,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.worklifeinjapan;
+				PRODUCT_BUNDLE_IDENTIFIER = net.worklifeinjapan;
 				PRODUCT_NAME = worklifeinjapan;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1557,7 +1506,6 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C350AE0BF25D2EFCA9ABB50 /* Pods-worklifeinjapan-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1593,7 +1541,6 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 29060999A607F66126034A37 /* Pods-worklifeinjapan-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

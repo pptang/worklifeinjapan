@@ -1,6 +1,4 @@
 PODS:
-  - Firebase (3.16.0):
-    - Firebase/Core (= 3.16.0)
   - Firebase/Core (3.16.0):
     - FirebaseAnalytics (= 3.8.0)
     - FirebaseCore (= 3.6.0)
@@ -28,7 +26,6 @@ PODS:
   - Protobuf (3.2.1)
 
 DEPENDENCIES:
-  - Firebase
   - Firebase/Messaging
 
 SPEC CHECKSUMS:
@@ -40,6 +37,6 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   Protobuf: 2ccbaf193f6c65adc67745453ca0c13234c32796
 
-PODFILE CHECKSUM: f181c8780321a84e7fce457a8b4aa9348d04f4f8
+PODFILE CHECKSUM: 3332f86bb7e284905c0e2456262d3e20862642bc
 
 COCOAPODS: 1.2.1

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'native-base';
-import { WebView } from 'react-native';
+import { WebView } from 'react-native-webview';
 import NavBar from '../components/NavBar';
 import Spinner from 'react-native-loading-spinner-overlay';
 

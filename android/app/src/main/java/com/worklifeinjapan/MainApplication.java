@@ -3,6 +3,7 @@ package com.worklifeinjapan;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import com.evollu.react.fcm.FIRMessagingPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNCWebViewPackage(),
             new VectorIconsPackage(),
             new ReactNativeYouTube(),
             new FIRMessagingPackage()

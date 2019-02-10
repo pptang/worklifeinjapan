@@ -5,7 +5,8 @@ import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
 import { CHANNEL_VIDEO_LIST } from '../utils/constants';
-import { Image, TouchableWithoutFeedback, Modal, WebView, View } from 'react-native';
+import { Image, TouchableWithoutFeedback, Modal, View } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 export default class VideoPage extends Component {
   constructor(props) {

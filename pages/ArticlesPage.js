@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container, Body, Content, Left, Right, Text, Button, Card, CardItem, Spinner, H3, Thumbnail } from 'native-base';
-import { View, WebView } from 'react-native';
+import { View } from 'react-native';
+import { WebView } from 'react-native-webview';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';
 import ErrorBar from '../components/ErrorBar';
@@ -146,7 +147,7 @@ export default class ArticlesPage extends Component {
                 <CardItem content>
                   <Left>
                     <Body>
-                      <WebView source={{ html: post.excerpt.rendered }} style={{ height: 75 }} scrollEnabled={false} />
+                      <WebView source={{ html: post.excerpt.rendered }} style={{ height: 75 }} scrollEnabled={false} originWhitelist={['*']} />
                     </Body>
                   </Left>
                 </CardItem>

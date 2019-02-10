@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Header, Body, Title, Left, Right, Icon, Button } from 'native-base';
 import { Share, TextInput, Platform } from 'react-native';
 import { SHARE_CANCELL, SHARE_SUCCESS, SHARE_FAIL, GET_POST } from '../utils/constants';

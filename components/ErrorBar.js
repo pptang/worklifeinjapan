@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Segment, Text, Icon, Button } from 'native-base';
 import { ERROR_MESSAGE } from '../utils/constants';
 

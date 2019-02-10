@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Content, Card, CardItem, Body, Left, H3, Text, Icon, Button, Spinner, Header } from 'native-base';
 import Moment from 'moment';
 import NavBar from '../components/NavBar';

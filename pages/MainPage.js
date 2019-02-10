@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import { Container, Content } from 'native-base';
 import { Image, View, Text } from 'react-native';

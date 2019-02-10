@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container } from 'native-base';
 import { WebView } from 'react-native';
 import NavBar from '../components/NavBar';
@@ -9,7 +10,7 @@ export default class DetailPage extends Component {
     super(props);
     this.state = {
       showSpinner: false,
-      isFirstLoad: true
+      isFirstLoad: true,
     };
   }
   render() {
@@ -35,7 +36,7 @@ export default class DetailPage extends Component {
         `}
           onLoadStart={() => {
             if (this.state.isFirstLoad) {
-              this.setState({ showSpinner: true,  isFirstLoad: false})
+              this.setState({ showSpinner: true, isFirstLoad: false });
             }
           }}
           onLoadEnd={() => setTimeout(() => this.setState({ showSpinner: false }), 500)}

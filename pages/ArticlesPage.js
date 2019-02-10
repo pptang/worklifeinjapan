@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Container, Body, Content, Left, Right, Text, Button, Card, CardItem, Spinner, H3, Thumbnail } from 'native-base';
 import { View, WebView } from 'react-native';
 import Moment from 'moment';
@@ -93,7 +94,7 @@ export default class ArticlesPage extends Component {
             <Title style={{ color: '#b51d22' }}>{lang.new_article_list}</Title>
           </Body>
           <Right />
-        </Header>*/}
+        </Header> */}
         <Content
           onScroll={(event) => {
             if (!this.isLoading && event.nativeEvent.contentOffset.y + 650 > this.spinnerOffsetTop) {
@@ -141,7 +142,7 @@ export default class ArticlesPage extends Component {
                           ? post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-square'].source_url
                           : post._embedded['wp:featuredmedia'][0].media_details.sizes['portfolio-default'].source_url
                       }} />
-                  </CardItem>*/}
+                  </CardItem> */}
                 <CardItem content>
                   <Left>
                     <Body>

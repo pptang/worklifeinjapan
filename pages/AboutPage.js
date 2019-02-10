@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Container } from 'native-base';
 import { WebView } from 'react-native';
 import NavBar from '../components/NavBar';
